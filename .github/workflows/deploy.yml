@@ -1,0 +1,68 @@
+# Deploy the ISF website to GitHub Pages.
+#
+# How this works (CI/CD in a nutshell): every time code is pushed to the
+# `main` branch, GitHub spins up a fresh Linux machine, installs the exact
+# dependencies from package-lock.json, runs the production build, and
+# publishes the resulting `dist/` folder to GitHub Pages. You never build
+# or upload by hand — pushing code IS deploying.
+#
+# One-time setup in the repo: Settings → Pages → Source → "GitHub Actions".
+
+name: Deploy to GitHub Pages
+
+on:
+  # Runs on every push to main
+  push:
+    branches: [main]
+  # Also lets you re-run it manually from the Actions tab
+  workflow_dispatch:
+
+# The deploy step needs permission to write to GitHub Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If two pushes land quickly, skip the older in-flight deploy and ship the
+# latest one instead of deploying stale code.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        # `npm ci` = clean install from package-lock.json, exactly reproducible
+        run: npm ci
+
+      - name: Build the site
+        # Runs tsc + vite build, then the postbuild script copies
+        # index.html → 404.html so deep links (e.g. /about) survive refresh.
+        run: npm run build
+
+      - name: Upload build output for Pages
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

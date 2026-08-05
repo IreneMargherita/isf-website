@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   ISF DESIGN SYSTEM
+   Custom utility/component classes built on the Tailwind tokens
+   defined in tailwind.config.js. Components reference these so
+   styling stays consistent and easy to retune in one place.
+   ============================================================ */
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream-50 font-body text-ink-700 antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-ink-900;
+    text-wrap: balance;
+  }
+
+  /* Keep focus rings visible & on-brand for keyboard users */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ruby-500 ring-offset-2 ring-offset-cream-50;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Page width wrapper */
+  .container-ministry {
+    @apply mx-auto w-full max-w-ministry px-5 sm:px-8;
+  }
+
+  /* ---- Buttons --------------------------------------------- */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ruby-600 px-6 py-3
+      text-sm font-semibold tracking-wide text-white shadow-ministry transition
+      hover:-translate-y-0.5 hover:bg-ruby-700 active:translate-y-0
+      disabled:pointer-events-none disabled:opacity-60;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ruby-200
+      bg-white/80 px-6 py-3 text-sm font-semibold tracking-wide text-ruby-700 shadow-sm
+      backdrop-blur transition hover:-translate-y-0.5 hover:border-ruby-300 hover:bg-ruby-50
+      active:translate-y-0;
+  }
+
+  /* ---- Cards ----------------------------------------------- */
+  .card-ministry {
+    @apply rounded-ministry bg-white p-6 shadow-ministry ring-1 ring-ink-900/5 transition;
+  }
+
+  .card-ministry-hover {
+    @apply hover:-translate-y-1 hover:shadow-ministry-lg;
+  }
+
+  /* ---- Ministry tag (eyebrow pill) ------------------------- */
+  .ministry-tag {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold
+      uppercase tracking-[0.14em];
+  }
+
+  /* ---- Section divider ------------------------------------- */
+  .section-divider {
+    @apply mx-auto h-px w-full max-w-xs bg-gradient-to-r from-transparent via-ruby-300/70 to-transparent;
+  }
+
+  /* A small decorative diamond divider used inside hero/section headers */
+  .divider-diamond {
+    @apply relative flex items-center justify-center gap-3 text-ruby-400;
+  }
+  .divider-diamond::before,
+  .divider-diamond::after {
+    content: '';
+    @apply h-px w-12 bg-ruby-200;
+  }
+
+  /* Link styling inside body copy */
+  .link-ministry {
+    @apply font-medium text-ruby-700 underline decoration-ruby-300 decoration-2 underline-offset-2
+      transition hover:text-ruby-800 hover:decoration-ruby-500;
+  }
+}
+
+@layer utilities {
+  /* Soft warm radial used behind hero / CTA bands */
+  .bg-ministry-radial {
+    background-image: radial-gradient(
+      120% 120% at 50% 0%,
+      rgba(168, 43, 65, 0.10) 0%,
+      rgba(168, 43, 65, 0) 55%
+    );
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  /* Inputs for the (placeholder) contact & prayer forms */
+  .form-input {
+    @apply w-full rounded-xl border border-ink-200 bg-cream-50 px-4 py-2.5 text-ink-800
+      transition placeholder:text-ink-400 focus:border-ruby-400 focus:bg-white;
+  }
+}

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="International Student Fellowship logo">
+<title>International Student Fellowship</title>
+<defs>
+<radialGradient id="isfGlobe" cx="40%" cy="36%" r="78%">
+<stop offset="0%" stop-color="#bfe1f6"/>
+<stop offset="48%" stop-color="#4a96cf"/>
+<stop offset="100%" stop-color="#1b4a78"/>
+</radialGradient>
+</defs>
+<path d="M 100.00 7.00 L 111.42 27.90 L 128.74 11.55 L 133.14 34.96 L 154.66 24.76 L 151.62 48.38 L 175.24 45.34 L 165.04 66.86 L 188.45 71.26 L 172.10 88.58 L 193.00 100.00 L 172.10 111.42 L 188.45 128.74 L 165.04 133.14 L 175.24 154.66 L 151.62 151.62 L 154.66 175.24 L 133.14 165.04 L 128.74 188.45 L 111.42 172.10 L 100.00 193.00 L 88.58 172.10 L 71.26 188.45 L 66.86 165.04 L 45.34 175.24 L 48.38 151.62 L 24.76 154.66 L 34.96 133.14 L 11.55 128.74 L 27.90 111.42 L 7.00 100.00 L 27.90 88.58 L 11.55 71.26 L 34.96 66.86 L 24.76 45.34 L 48.38 48.38 L 45.34 24.76 L 66.86 34.96 L 71.26 11.55 L 88.58 27.90 Z" fill="none" stroke="#aab1b7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="100" cy="100" r="71.0" fill="none" stroke="#c8ced3" stroke-width="0.9" opacity="0.55"/>
+<circle cx="100.00" cy="7.00" r="5" fill="#a82b41"/>
+<circle cx="128.74" cy="11.55" r="5" fill="#2b73b3"/>
+<circle cx="154.66" cy="24.76" r="5" fill="#cf9116"/>
+<circle cx="175.24" cy="45.34" r="5" fill="#3d7e45"/>
+<circle cx="188.45" cy="71.26" r="5" fill="#2f2a26"/>
+<circle cx="193.00" cy="100.00" r="5" fill="#a82b41"/>
+<circle cx="188.45" cy="128.74" r="5" fill="#2b73b3"/>
+<circle cx="175.24" cy="154.66" r="5" fill="#cf9116"/>
+<circle cx="154.66" cy="175.24" r="5" fill="#3d7e45"/>
+<circle cx="128.74" cy="188.45" r="5" fill="#2f2a26"/>
+<circle cx="100.00" cy="193.00" r="5" fill="#a82b41"/>
+<circle cx="71.26" cy="188.45" r="5" fill="#2b73b3"/>
+<circle cx="45.34" cy="175.24" r="5" fill="#cf9116"/>
+<circle cx="24.76" cy="154.66" r="5" fill="#3d7e45"/>
+<circle cx="11.55" cy="128.74" r="5" fill="#2f2a26"/>
+<circle cx="7.00" cy="100.00" r="5" fill="#a82b41"/>
+<circle cx="11.55" cy="71.26" r="5" fill="#2b73b3"/>
+<circle cx="24.76" cy="45.34" r="5" fill="#cf9116"/>
+<circle cx="45.34" cy="24.76" r="5" fill="#3d7e45"/>
+<circle cx="71.26" cy="11.55" r="5" fill="#2f2a26"/>
+<circle cx="100" cy="100" r="58" fill="url(#isfGlobe)" stroke="#143049" stroke-width="1.4"/>
+<g fill="#e3f1da" opacity="0.78">
+<path d="M60 60 q14 -7 26 1 q9 8 0 15 q-13 9 -26 3 q-9 -6 0 -19 Z"/>
+<path d="M118 66 q12 -3 17 6 q4 9 -6 12 q-12 4 -16 -6 q-2 -8 5 -12 Z"/>
+<path d="M66 112 q16 -5 24 4 q6 8 -3 15 q-15 8 -25 -2 q-7 -9 4 -17 Z"/>
+<path d="M120 116 q11 -4 15 5 q3 9 -7 12 q-11 2 -14 -7 q-1 -7 6 -10 Z"/>
+</g>
+<text x="100" y="116" text-anchor="middle" font-family="Georgia, 'Cormorant Garamond', serif" font-size="50" font-weight="700" letter-spacing="1" fill="#14202c">ISF</text>
+</svg>
