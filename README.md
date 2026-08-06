@@ -1,5 +1,6 @@
 # International Student Fellowship (ISF) — Website
 
+
 A warm, welcoming, Christ-centered static website for **International Student
 Fellowship (ISF)** at California State University, Long Beach. Built as a fast,
 fully static single-page app — no backend, no database, no CMS.
