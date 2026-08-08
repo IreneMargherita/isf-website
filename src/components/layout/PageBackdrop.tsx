@@ -31,10 +31,10 @@ import { asset } from '../../lib/asset'
  * ------------------------------------------------------------------- */
 
 const STRENGTH: Record<string, number> = {
-  '/': 0.17,           // Home       — most visible
-  '/about': 0.14,      // About
-  '/gallery': 0.09,    // Events     — very translucent
-  '/connection': 0.09, // Connect    — very translucent
+  '/': 0.26,           // Home       — most visible
+  '/about': 0.22,      // About
+  '/gallery': 0.15,    // Events     — kept lighter, people read this page
+  '/connection': 0.15, // Connect    — kept lighter, there's a form on it
 }
 
 export default function PageBackdrop() {
