@@ -1,5 +1,5 @@
 # =====================================================================
-#  deploy-isf.ps1 — publish the ISF website to GitHub Pages
+#  deploy-isf.ps1 — publish the ISF website to https://isfbeach.org
 # ---------------------------------------------------------------------
 #  HOW TO RUN:
 #    1. Open PowerShell
@@ -10,13 +10,15 @@
 #  run this once, then try again:
 #    Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 #
-#  The script cleans up two leftovers, checks the site still builds,
-#  commits, pushes, and then WAITS and confirms the live site actually
-#  changed — so you don't have to guess whether it worked.
+#  The script cleans up leftovers, checks the site still builds, commits,
+#  pushes, and then WAITS and confirms the live site actually changed —
+#  so you don't have to guess whether it worked.
 # =====================================================================
 
 $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
+
+$SITE = 'https://isfbeach.org'
 
 function Step($n, $msg) { Write-Host "[$n/7] $msg" -ForegroundColor Yellow }
 function OK($msg)       { Write-Host "      $msg" -ForegroundColor Green }
@@ -35,11 +37,11 @@ if (Test-Path '.git\index.lock') {
     OK "None found."
 }
 
-# --- 2. Delete the three retired pages --------------------------------
-Step 2 "Removing the retired pages..."
+# --- 2. Delete the retired pages --------------------------------------
+Step 2 "Removing any retired pages..."
 if (Test-Path '_to_delete') {
     Remove-Item '_to_delete' -Recurse -Force
-    OK "Deleted _to_delete\ (Curriculum, Prayer Request, Give)."
+    OK "Deleted _to_delete\."
 } else {
     OK "Already gone."
 }
@@ -59,9 +61,8 @@ if ($LASTEXITCODE -ne 0) {
 OK "Build succeeded."
 
 # --- 4. Sync with GitHub ----------------------------------------------
-# Your local copy is one commit behind GitHub (someone edited the README
-# on github.com). Fast-forwarding the branch pointer here keeps all your
-# files exactly as they are and avoids a rejected push.
+# Fast-forwarding the branch pointer keeps all your files exactly as they
+# are and avoids a rejected push if anything changed on github.com.
 Step 4 "Syncing with GitHub..."
 git fetch origin main
 if ($LASTEXITCODE -ne 0) { Fail "Could not reach GitHub. Check your internet connection."; exit 1 }
@@ -70,29 +71,20 @@ OK "Local branch lined up with GitHub."
 
 # --- 5. Commit ---------------------------------------------------------
 # The two .ps1 helper scripts are deliberately kept out of the commit.
+#
+# The message is generic and dated on purpose. This script runs on every
+# deploy, so a message describing one specific change would be a lie on
+# every run after the first — and a git history full of confident wrong
+# descriptions is worse than one full of vague right ones. If a change is
+# worth describing, commit it by hand before running this.
 Step 5 "Committing your changes..."
 git add -A -- . ':!deploy-isf.ps1' ':!setup-ssh-github.ps1'
 git diff --cached --quiet
 if ($LASTEXITCODE -eq 0) {
     OK "Nothing new to commit."
 } else {
-    $msg = @"
-Rewrite site copy to match ISF postcard tone
-
-Lead with friendship and American culture instead of faith language.
-Remove insider vocabulary (ministry, gospel, Christ-centered, testimony)
-and the Hebrews pull-quote from all rendered copy; keep the postcard's
-mission line, which ends with 'explore following Jesus'.
-
-- Remove Curriculum, Prayer Request, and Give pages/routes
-- Nav is now Home, About, Events, Our Team, Stories, Connect, Resources
-- Replace the hello@isfcsulb.org placeholder with the real postcard
-  channels: call/text Arthur and Bob, WhatsApp, Instagram, Facebook group
-- Add 'recognized CSULB club', vegetarian options, ride pickup details
-- Rewrite the page description and link-preview text in index.html
-- Add a tone guide to src/data/content.ts and the README
-"@
-    git commit -m $msg | Out-Null
+    $stamp = Get-Date -Format 'yyyy-MM-dd HH:mm'
+    git commit -m "Site update $stamp" | Out-Null
     OK "Committed."
 }
 
@@ -113,8 +105,8 @@ OK "Pushed. GitHub Actions is building the live site now."
 
 # --- 7. Wait for THIS EXACT BUILD to appear on the live site ------------
 # Vite stamps every build's JavaScript with a hash of its contents, e.g.
-# index-BGchTOCU.js. Reading that filename out of the freshly built
-# dist/index.html and then waiting for the live server to serve that exact
+# index-DNyoMS_b.js. Reading that filename out of the freshly built
+# dist\index.html and then waiting for the live server to serve that exact
 # name is an unambiguous check: no phrase-matching, no guessing. An earlier
 # version of this script looked for a sentence that had been on the page for
 # many builds, so it reported success even when the site was stale.
@@ -127,7 +119,7 @@ for ($i = 1; $i -le 20; $i++) {
     Start-Sleep -Seconds 15
     try {
         # cache-busting query, so we test the SERVER and not our own cache
-        $u = "https://irenemargherita.github.io/isf-website/$asset" + "?t=" + [guid]::NewGuid()
+        $u = "$SITE/$asset" + "?t=" + [guid]::NewGuid()
         $r = Invoke-WebRequest -Uri $u -UseBasicParsing -ErrorAction Stop
         if ($r.StatusCode -eq 200) { $live = $true; break }
     } catch { }
@@ -143,10 +135,14 @@ if ($live) {
     Write-Host "Pushed fine, but the live site is not serving this build yet." -ForegroundColor Yellow
     Write-Host "Check the build log:" -ForegroundColor Yellow
     Write-Host "  https://github.com/IreneMargherita/isf-website/actions"
+    Write-Host ""
+    Write-Host "On the FIRST deploy after switching to isfbeach.org, this can also" -ForegroundColor Yellow
+    Write-Host "mean GitHub is still issuing the HTTPS certificate for the new" -ForegroundColor Yellow
+    Write-Host "domain. That can take up to 24 hours. Check Settings > Pages." -ForegroundColor Yellow
 }
 
 Write-Host ""
 Write-Host "Open it - and HARD-REFRESH with Ctrl+Shift+R, or your browser" -ForegroundColor Cyan
 Write-Host "will keep showing you the cached old version:" -ForegroundColor Cyan
-Write-Host "  https://irenemargherita.github.io/isf-website/"
+Write-Host "  $SITE"
 Write-Host ""
