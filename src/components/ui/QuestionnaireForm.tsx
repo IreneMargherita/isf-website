@@ -37,6 +37,7 @@ function Field({
   error,
   children,
   className = '',
+  showOptional = true,
 }: {
   label: string
   htmlFor: string
@@ -45,13 +46,21 @@ function Field({
   error?: string
   children: React.ReactNode
   className?: string
+  /** Set false to drop the little "(optional)" tag. The field is still
+      optional either way: nothing about validation reads this. It exists
+      because on the two personal questions the label was starting to look
+      like a disclaimer, and a question that apologises for itself invites
+      the reader to wonder what's wrong with it. */
+  showOptional?: boolean
 }) {
   return (
     <div className={`flex flex-col gap-1.5 ${className}`}>
       <label htmlFor={htmlFor} className="text-sm font-bold text-ink-800">
         {label}
         {required && <span className="ml-1 text-coral-600" aria-hidden="true">*</span>}
-        {!required && <span className="ml-1.5 text-xs font-medium text-ink-400">(optional)</span>}
+        {!required && showOptional && (
+          <span className="ml-1.5 text-xs font-medium text-ink-400">(optional)</span>
+        )}
       </label>
       {hint && <p className="text-xs leading-relaxed text-ink-500">{hint}</p>}
       {children}
@@ -309,15 +318,20 @@ export default function QuestionnaireForm({
           </div>
         </fieldset>
 
-        {/* ---------------- the two personal questions, both optional ---------------- */}
+        {/* ---------------- the two personal questions ----------------
+            Both are still optional in every way that counts: neither is in
+            REQUIRED, neither has the asterisk, and the belief dropdown
+            opens on "Prefer not to say". What's gone is the LABELLING of
+            them as optional. Three separate hedges stacked on two questions
+            ("Only if you want to", plus "(optional)" twice) read as nerves,
+            and nerves are contagious: it made a student wonder why we were
+            being so careful about asking. The answer options do the
+            reassuring now, quietly. */}
         <div className="flex flex-col gap-5 rounded-2xl bg-paper-100 p-5 ring-1 ring-ink-900/5">
-          <p className="text-xs font-semibold uppercase tracking-wider text-ink-500">
-            Only if you want to
-          </p>
-
           <Field
             label="What best describes your religious belief or tradition?"
             htmlFor="religion"
+            showOptional={false}
           >
             <select
               id="religion"
@@ -342,7 +356,6 @@ export default function QuestionnaireForm({
           <fieldset className="flex flex-col gap-2.5">
             <legend className="text-sm font-bold text-ink-800">
               {questionnaire.dialogueQuestion}
-              <span className="ml-1.5 text-xs font-medium text-ink-400">(optional)</span>
             </legend>
             <div className="mt-1 flex flex-wrap gap-2">
               {['Yes', 'Maybe', 'No'].map((v) => (

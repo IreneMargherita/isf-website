@@ -320,7 +320,7 @@ export const about = {
     title: 'How we do things',
     body: [
       "Friendship comes first. We show up, we cook, we drive, we listen, because that's what friends do and because it's the part we enjoy most.",
-      "We're Christians, and that's not incidental. The love of Christ is why this club exists and why the table keeps getting longer. Some students want to talk about that and read the Bible with us, and those are some of our favourite evenings. Others just want dinner and a ride to the beach, and that's a good evening too.",
+      "We're Christians, and that's not incidental. The love of Christ is why this club exists and why the table keeps getting longer. Some students want to talk about that and read the Bible with us, and those are some of our favorite evenings. Whatever brings you here, you're welcome at our table.",
     ],
     /* Titles read as a single sentence across the four cards:
        "We show up, we help out, we trade cultures, we share what we love."
