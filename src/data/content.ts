@@ -318,21 +318,25 @@ export const about = {
       "Friendship comes first. We show up, we cook, we drive, we listen, because that's what friends do and because it's the part we enjoy most.",
       "We're Christians, and that's not incidental. The love of Christ is why this club exists and why the table keeps getting longer. Some students want to talk about that and read the Bible with us, and those are some of our favourite evenings. Others just want dinner and a ride to the beach, and that's a good evening too.",
     ],
+    /* Titles read as a single sentence across the four cards:
+       "We show up, we help out, we trade cultures, we share what we love."
+       Keep the "We ..." shape if you ever add or reword one, or the row
+       stops scanning as one thought. */
     steps: [
       {
-        title: 'Show up',
-        text: 'Be there week after week, learn your name, and remember what you said last time.',
+        title: 'We show up',
+        text: "We're there week after week, we learn your name, and we remember what you said last time.",
       },
       {
-        title: 'Help out',
+        title: 'We help out',
         text: 'Rides, meals, errands, paperwork, and the everyday puzzles of student life in a new country.',
       },
       {
-        title: 'Trade cultures',
+        title: 'We trade cultures',
         text: "We'll explain American holidays and slang. Honestly, we'd rather hear about yours.",
       },
       {
-        title: 'Share what we love',
+        title: 'We share what we love',
         text: "Faith is part of who we are. Ask us anything about it, any time, and we'll be glad you did.",
       },
     ],
