@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent } from 'react'
+import { useId, useRef, useState, type FormEvent } from 'react'
 import { questionnaire } from '../../data/content'
 import { accentAt } from '../../lib/accents'
 
@@ -64,7 +64,14 @@ function Field({
   )
 }
 
-export default function QuestionnaireForm() {
+export default function QuestionnaireForm({
+  variant = 'card',
+  onSubmitted,
+}: {
+  /** 'bare' drops the card shell, for use inside the modal. */
+  variant?: 'card' | 'bare'
+  onSubmitted?: () => void
+} = {}) {
   const { endpoint, intro, privacy, success, options } = questionnaire
 
   const [status, setStatus] = useState<Status>('idle')
@@ -73,6 +80,9 @@ export default function QuestionnaireForm() {
   const [gradTerm, setGradTerm] = useState('')
   const [gradYear, setGradYear] = useState('')
   const formRef = useRef<HTMLFormElement>(null)
+  // unique per instance, so the inline form and the modal form never post
+  // into each other's iframe
+  const sink = `isf-form-sink-${useId().replace(/:/g, '')}`
   const awaitingReply = useRef(false)
   const timer = useRef<number | undefined>(undefined)
 
@@ -120,15 +130,21 @@ export default function QuestionnaireForm() {
     awaitingReply.current = false
     window.clearTimeout(timer.current)
     setStatus('done')
+    onSubmitted?.()
     formRef.current?.reset()
     setReligion('')
     setGradTerm('')
     setGradYear('')
   }
 
+  const shell =
+    variant === 'card'
+      ? 'card-ministry relative overflow-hidden p-6 sm:p-8'
+      : 'relative'
+
   if (status === 'done') {
     return (
-      <div className="card-ministry flex flex-col items-center gap-4 p-10 text-center">
+      <div className={`flex flex-col items-center gap-4 p-10 text-center ${variant === 'card' ? 'card-ministry' : ''}`}>
         <span className="flex h-16 w-16 items-center justify-center rounded-full bg-grass-100 text-grass-700">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M20 6 9 17l-5-5" />
@@ -152,8 +168,10 @@ export default function QuestionnaireForm() {
   })
 
   return (
-    <div className="card-ministry relative overflow-hidden p-6 sm:p-8">
-      <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1.5 rule-rainbow" />
+    <div className={shell}>
+      {variant === 'card' && (
+        <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1.5 rule-rainbow" />
+      )}
 
       <h3 className="text-2xl font-extrabold text-ink-900">{questionnaire.title}</h3>
       <p className="mt-2 leading-relaxed text-ink-600">{intro}</p>
@@ -178,7 +196,7 @@ export default function QuestionnaireForm() {
         ref={formRef}
         action={endpoint || undefined}
         method="post"
-        target="isf-form-sink"
+        target={sink}
         onSubmit={handleSubmit}
         className="mt-6 flex flex-col gap-6"
         noValidate
@@ -356,7 +374,7 @@ export default function QuestionnaireForm() {
       {/* Where the submission actually goes. Hidden, but not display:none,
           because some browsers won't load a fully hidden iframe. */}
       <iframe
-        name="isf-form-sink"
+        name={sink}
         title="Form submission target"
         onLoad={handleIframeLoad}
         className="absolute h-0 w-0 border-0 opacity-0"

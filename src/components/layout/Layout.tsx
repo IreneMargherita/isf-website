@@ -4,6 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 import ScrollToTop from './ScrollToTop'
 import PageBackdrop from './PageBackdrop'
+import QuestionnaireLauncher from '../ui/QuestionnaireLauncher'
 
 function PageLoader() {
   return (
@@ -32,6 +33,7 @@ export default function Layout() {
         </Suspense>
       </main>
       <Footer className="relative z-10" />
+      <QuestionnaireLauncher />
     </div>
   )
 }

@@ -454,6 +454,19 @@ export const questionnaire = {
   privacy:
     'We keep this to ourselves. Your details are only used to invite you to ISF events, never shared or sold, and you can ask us to delete them any time.',
   submitLabel: 'Send it in',
+
+  /* The floating button and the pop-up dialog on the rest of the site.
+   *
+   * autoOpenSeconds: how long a visitor is on the home page before the
+   * dialog opens by itself. It happens at most ONCE per person, ever, and
+   * never on a phone or for anyone who has asked for reduced motion.
+   * Set it to 0 to switch the automatic opening off and rely on the
+   * floating button alone. */
+  popup: {
+    autoOpenSeconds: 7,
+    buttonLabel: 'Fill in the student questionnaire',
+    nudge: 'New here? Tell us about yourself',
+  },
   dialogueQuestion:
     'I would be open to a conversation (about 30 minutes) to hear what followers of Jesus Christ believe.',
   success: {
