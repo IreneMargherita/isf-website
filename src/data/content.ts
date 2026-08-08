@@ -444,9 +444,11 @@ export const connection = {
  *  table. Change one, change the other.
  */
 export const questionnaire = {
-  // TODO: paste the URL from Deploy > New deployment > Web app.
-  // It looks like: https://script.google.com/macros/s/AKfy..../exec
-  endpoint: '',
+  // Live endpoint: the Apps Script web app bound to the "Fall 2026" sheet.
+  // If you ever redeploy with a NEW deployment (rather than a new version of
+  // the existing one), the URL changes and must be updated here.
+  endpoint:
+    'https://script.google.com/macros/s/AKfycbzo9vkMw_NHzbWSk5YkjllZBDPO_cx0q1bhbJUbovlj5sK9YKC5qOrlrDeqSeFN1Mm9Ew/exec',
 
   title: 'International Student Questionnaire',
   intro:
