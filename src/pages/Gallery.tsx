@@ -2,6 +2,7 @@ import PageHero from '../components/ui/PageHero'
 import Card from '../components/ui/Card'
 import CallToAction from '../components/sections/CallToAction'
 import SectionHeader from '../components/ui/SectionHeader'
+import PhotoCollage from '../components/sections/PhotoCollage'
 import { gallery } from '../data/content'
 import { accentAt, accentByName } from '../lib/accents'
 
@@ -65,29 +66,10 @@ export default function Gallery() {
               {p}
             </p>
           ))}
+          <p className="text-sm font-semibold text-ink-400">Click any photo to see it bigger.</p>
         </div>
 
-        {/* Photo tiles — placeholders. Replace with real images: see README. */}
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {gallery.categories.map((cat) => (
-            <div
-              key={cat.title}
-              className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-ministry ring-1 ring-ink-900/5"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${toneGradient[cat.tone] ?? toneGradient.coral}`} />
-              <div className="absolute inset-0 flex items-center justify-center text-white/45">
-                <ImageIcon />
-              </div>
-              <span className="absolute left-3 top-3 rounded-full bg-white/85 px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-ink-500">
-                Photo placeholder
-              </span>
-              <div className="absolute inset-x-0 bottom-0 flex flex-col gap-0.5 bg-gradient-to-t from-ink-900/70 to-transparent p-5">
-                <h3 className="text-lg font-semibold text-white">{cat.title}</h3>
-                <p className="text-sm text-white/85">{cat.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <PhotoCollage />
       </section>
 
       <section className="bg-cream-100/70">

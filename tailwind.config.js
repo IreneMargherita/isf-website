@@ -28,11 +28,12 @@ const accent = (o) => o
 
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
-  safelist: [
-    // Accent classes are composed at runtime (see src/lib/accents.ts), so
-    // Tailwind can't see them in the source. Keep them in the build.
-    { pattern: /(bg|text|ring|border|from|to|decoration)-(red|coral|sun|grass|teal|sky|indigo|grape|berry|brand)-(50|100|200|300|400|500|600|700|800)/ },
-  ],
+  /* NOTE: no safelist needed. Every accent class lives as a complete
+     literal string in src/lib/accents.ts (e.g. 'bg-red-50 text-red-800'),
+     and Tailwind scans .ts files, so it finds them. An earlier safelist
+     regex here generated ~14,000 unused rules and made the stylesheet
+     1.1MB. If you ever build a class name by concatenation, write the
+     full string somewhere Tailwind can see instead of adding it back. */
   theme: {
     extend: {
       colors: {

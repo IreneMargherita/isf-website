@@ -51,7 +51,7 @@ export default function Footer() {
         <div className="flex flex-col gap-5 md:col-span-5">
           <Link to="/" className="inline-flex w-fit items-center gap-3" aria-label={`${site.name}, home`}>
             <span className="rounded-2xl bg-white p-2.5">
-              <img src={asset('isf-logo.png')} alt="" className="h-12 w-12 object-contain" width={48} height={48} />
+              <img src={asset('isf-logo-mark.png')} alt="" className="h-12 w-12 object-contain" width={48} height={48} />
             </span>
             <span className="font-display text-xl font-extrabold leading-tight text-white">
               International Student

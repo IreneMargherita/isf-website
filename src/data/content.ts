@@ -616,17 +616,7 @@ export const gallery = {
       'Home dinners, surf mornings, pool parties and bonfires. Here is a look at what ISF is like and what is coming up next. Everything is free and everyone is welcome.',
   },
   intro: [
-    'These tiles are placeholders for real photos. Drop your images into /public/gallery and update this page to bring the group to life.',
-  ],
-  // TODO: Replace placeholder tiles with real event photos (see README).
-  categories: [
-    { title: 'Home dinners', text: 'Free home-cooked meals around a welcoming table.', tone: 'coral' },
-    { title: 'Beach days', text: 'Sun, sand and good conversation.', tone: 'sky' },
-    { title: 'Surf & body board', text: 'Lessons for first timers along the SoCal coast.', tone: 'teal' },
-    { title: 'Camping', text: "Campfires, s'mores and starry nights.", tone: 'sun' },
-    { title: 'Culture nights', text: 'Celebrating the traditions we each bring.', tone: 'grape' },
-    { title: 'Holiday gatherings', text: 'Thanksgiving, Lunar New Year and more.', tone: 'berry' },
-    { title: 'Games & snacks', text: 'Drop-in afternoons on campus between classes.', tone: 'grass' },
+    'Ten years of dinners, beach days, road trips and costumes, all in one place. Every face here belonged to somebody far from home who decided to come along.',
   ],
   /** Practical notes lifted straight from the postcard. */
   eventNotes: [

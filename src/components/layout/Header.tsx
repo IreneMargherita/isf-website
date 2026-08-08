@@ -49,7 +49,7 @@ export default function Header() {
       <nav className="container-ministry flex h-[4.5rem] items-center justify-between gap-4" aria-label="Primary">
         <Link to="/" className="group flex items-center gap-3" aria-label={`${site.name}, home`}>
           <img
-            src={asset('isf-logo.png')}
+            src={asset('isf-logo-mark.png')}
             alt=""
             className="h-12 w-12 shrink-0 object-contain transition-transform duration-300 group-hover:rotate-6"
             width={48}
