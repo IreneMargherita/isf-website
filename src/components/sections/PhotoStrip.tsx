@@ -29,7 +29,7 @@ export default function PhotoStrip() {
         <SectionHeader
           eyebrow="A few good days"
           title="This is what it actually looks like"
-          description="Dinners, road trips, first time on a surfboard, and the odd graduation. Ten years of them."
+          description="Dinners, road trips, first time on a surfboard, and the odd graduation. We have been at this since 2010."
           tone="berry"
         />
 

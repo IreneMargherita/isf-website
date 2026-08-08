@@ -510,8 +510,13 @@ export const gallery = {
     subtitle:
       'Home dinners, surf mornings, pool parties and bonfires. Here is a look at what ISF is like and what is coming up next. Everything is free and everyone is welcome.',
   },
+  /* Say "since 2010", never "sixteen years". A count of years is a fact
+     with an expiry date: right the day it was written, then quietly wrong
+     every January while nobody notices. The founding year stays true
+     forever and the reader does the arithmetic for free. Same rule for
+     "over 200 students" or any other number that grows on its own. */
   intro: [
-    'Ten years of dinners, beach days, road trips and costumes, all in one place. Every face here belonged to somebody far from home who decided to come along.',
+    'Dinners, beach days, road trips and costumes since 2010, all in one place. Every face here belonged to somebody far from home who decided to come along.',
   ],
   /** Practical notes lifted straight from the postcard. */
   eventNotes: [

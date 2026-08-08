@@ -102,6 +102,56 @@ function setUpSheet() {
 }
 
 /**
+ * Try to get the write lock, giving up and trying again a few times
+ * instead of failing after a single wait.
+ *
+ * WHY A RETRY LOOP AND NOT JUST ONE LONGER WAIT
+ * --------------------------------------------
+ * Appending a row is really two steps: find the last row, then write to
+ * the one below it. If two submissions do that at the same instant they
+ * can both pick the same row and one student's answers get written over.
+ * The lock is the single key to the room: only the holder may write.
+ *
+ * `waitLock(ms)` throws if the key doesn't come free in time. One long
+ * wait and three shorter ones add up to the same patience, but the loop
+ * behaves better under a real rush, for two reasons:
+ *
+ *  - Between attempts we let go completely and sleep. That gives the
+ *    queue a moment to actually drain instead of everyone pressing
+ *    against the door at once.
+ *  - The sleep is randomised (that's the "jitter"). If 100 phones all
+ *    scanned the QR code in the same second and every one of them
+ *    retried after exactly 500ms, they would collide again, and again,
+ *    in lockstep. Spreading the retries out over a random window breaks
+ *    that rhythm. This is a standard pattern called exponential backoff
+ *    with jitter, and you'll meet it again with API rate limits, database
+ *    connections and AWS SDK calls. Same idea every time.
+ *
+ * Worst case here is about 32 seconds of waiting, well inside both the
+ * Apps Script execution limit and a student's patience.
+ */
+function acquireLock_(lock) {
+  var WAITS = [10000, 10000, 10000] // three attempts, 10s each
+
+  for (var i = 0; i < WAITS.length; i++) {
+    try {
+      lock.waitLock(WAITS[i])
+      return true // got the key
+    } catch (err) {
+      // Last attempt failed, so stop pretending and report it.
+      if (i === WAITS.length - 1) return false
+
+      // Back off a little longer each round, plus a random slice so that
+      // simultaneous submitters don't all wake up together.
+      var backoff = 400 * (i + 1) + Math.floor(Math.random() * 600)
+      console.warn('Lock busy, retrying in ' + backoff + 'ms (attempt ' + (i + 1) + ')')
+      Utilities.sleep(backoff)
+    }
+  }
+  return false
+}
+
+/**
  * Receives a submission from the website and appends one row.
  *
  * The site sends a normal HTML form post, so the values arrive in
@@ -112,10 +162,19 @@ function setUpSheet() {
  */
 function doPost(e) {
   var lock = LockService.getScriptLock()
+  var held = false
   try {
     // Two students submitting at the same instant would otherwise be able
     // to write to the same row. Waiting for the lock avoids that.
-    lock.waitLock(20000)
+    held = acquireLock_(lock)
+    if (!held) {
+      // We never got the key, so we never touched the sheet. Nothing is
+      // half-written. Log the whole submission so the answers exist
+      // somewhere you can recover them from the execution log.
+      console.error('Could not acquire lock after 3 attempts. Payload: ' +
+        JSON.stringify((e && e.parameter) || {}))
+      return reply_('error: busy')
+    }
 
     var sh = sheet_()
     if (sh.getLastRow() === 0) setUpSheet()
@@ -137,7 +196,14 @@ function doPost(e) {
     console.error(err)
     return reply_('error: ' + err)
   } finally {
-    try { lock.releaseLock() } catch (ignore) {}
+    // Release ONLY if we actually hold it. `finally` always runs, even
+    // when the code above threw, which is exactly why the lock lives
+    // here: if a crash could skip the release, the door would stay
+    // locked forever and every student after this one would be stuck.
+    // (Python gives you `with` statements to do this same job for you.)
+    if (held) {
+      try { lock.releaseLock() } catch (ignore) {}
+    }
   }
 }
 
