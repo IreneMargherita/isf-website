@@ -408,8 +408,8 @@ export const connection = {
     {
       audience: 'For international students',
       title: 'Come make some friends',
-      text: "New to CSULB, or just looking for people to hang out with? Text us and we'll get you to your first dinner.",
-      cta: { label: 'Text us', href: 'sms:+15626066160' },
+      text: "New to CSULB, or just looking for people to hang out with? Message us and we'll get you to your first dinner.",
+      cta: { label: 'Message us on WhatsApp', href: 'https://wa.me/15626066160' },
     },
   ],
   rides: {
