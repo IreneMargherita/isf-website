@@ -1,7 +1,7 @@
 import Hero from '../components/sections/Hero'
 import WeeklyRhythm from '../components/sections/WeeklyRhythm'
 import ImpactMap from '../components/sections/ImpactMap'
-import TestimonialPreview from '../components/sections/TestimonialPreview'
+import PhotoStrip from '../components/sections/PhotoStrip'
 import CallToAction from '../components/sections/CallToAction'
 import SectionHeader from '../components/ui/SectionHeader'
 import Card from '../components/ui/Card'
@@ -11,8 +11,8 @@ import { home } from '../data/content'
 import { accentAt } from '../lib/accents'
 
 export default function Home() {
-  const { whoWeAre, missionPreview, studentInvite, volunteerInvite, finalCta } = home
-  const invites = [studentInvite, volunteerInvite]
+  const { whoWeAre, missionPreview, studentInvite, finalCta } = home
+  const invites = [studentInvite]
 
   return (
     <>
@@ -68,7 +68,7 @@ export default function Home() {
       </section>
 
       <section className="container-ministry">
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-2xl gap-6">
           {invites.map((inv, idx) => {
             const accent = accentAt(idx === 0 ? 4 : 8)
             return (
@@ -96,7 +96,7 @@ export default function Home() {
         </div>
       </section>
 
-      <TestimonialPreview />
+      <PhotoStrip />
 
       <CallToAction
         title={finalCta.title}

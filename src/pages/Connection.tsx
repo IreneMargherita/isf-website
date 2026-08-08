@@ -101,7 +101,7 @@ export default function Connection() {
 
       <section className="bg-paper-100">
         <div className="container-ministry py-16 sm:py-20">
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="mx-auto grid max-w-xl gap-6">
             {connection.paths.map((p, i) => (
               <Card key={p.audience} hover className="flex flex-col gap-3 bg-white">
                 <span className={`ministry-tag w-fit ${accentAt(i * 4).chip}`}>{p.audience}</span>

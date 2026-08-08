@@ -90,10 +90,6 @@ export default function Header() {
           })}
         </ul>
 
-        <a href="sms:+15626066160" className="btn-primary hidden !px-5 !py-2.5 xl:inline-flex">
-          Text us
-        </a>
-
         {/* Mobile toggle */}
         <button
           type="button"

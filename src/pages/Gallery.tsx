@@ -72,7 +72,9 @@ export default function Gallery() {
         <PhotoCollage />
       </section>
 
-      <section className="bg-cream-100/70">
+      {/* id + scroll-mt is what makes /gallery#upcoming land here with the
+          sticky header clear of the heading */}
+      <section id="upcoming" className="scroll-mt-24 bg-paper-100">
         <div className="container-ministry py-16 sm:py-20">
           <SectionHeader eyebrow="Save the date" title="Upcoming events" align="left" />
 
@@ -113,23 +115,11 @@ export default function Gallery() {
         </div>
       </section>
 
-      <section className="container-ministry py-16 sm:py-20">
-        <SectionHeader eyebrow="Looking back" title="Past gatherings" align="left" />
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {gallery.past.map((ev, i) => (
-            <Card key={ev.title} className="flex flex-col gap-2">
-              <span className={`text-xs font-bold uppercase tracking-wider ${accentAt(i * 3 + 1).text}`}>{ev.date}</span>
-              <h3 className="text-lg font-semibold text-ink-900">{ev.title}</h3>
-              <p className="text-sm leading-relaxed text-ink-600">{ev.text}</p>
-            </Card>
-          ))}
-        </div>
-      </section>
-
       <CallToAction
         title={gallery.cta.title}
         description={gallery.cta.description}
         primaryCta={gallery.cta.primaryCta}
+        secondaryCta={gallery.cta.secondaryCta}
       />
     </>
   )

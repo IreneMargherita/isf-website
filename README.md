@@ -138,10 +138,9 @@ Netlify), or any form service that accepts a POST.
 
 - [ ] Direct Facebook group URL — `site.contacts.facebook.href` in
       `src/data/content.ts` (currently a Facebook search for the group name)
-- [ ] Real testimonials (with permission) — `testimonials.stories`
 - [ ] Upcoming / past events — `gallery.upcoming` and `gallery.past`
-- [ ] Gallery photos — `public/gallery/` + `src/pages/Gallery.tsx`
-- [ ] Resource links (currently `#`) — `resources.sections`
+- [ ] More photos — add four files to `public/gallery/` and an entry to
+      `src/data/photos.ts` (see the comment at the top of that file)
 - [ ] Each semester's real schedule — `gallery.upcoming` (copy it from the
       printed postcard)
 - [ ] Connect the Connect form (see above)
@@ -159,8 +158,7 @@ src/
     sections/ Hero, ImpactMap, WeeklyRhythm, CallToAction, TestimonialPreview
   data/
     content.ts   ← single source of truth for ALL copy
-  pages/      Home, About, Testimonials, Connection,
-              Resources, Gallery, NotFound
+  pages/      Home, About, Gallery, Connection, NotFound
   App.tsx     routes (all pages lazy-loaded / code-split)
   main.tsx    app entry (BrowserRouter)
   index.css   Tailwind layers + custom ministry utility classes

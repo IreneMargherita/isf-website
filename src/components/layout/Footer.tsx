@@ -107,7 +107,7 @@ export default function Footer() {
 
         <div className="flex flex-col gap-3 md:col-span-4">
           <h2 className="font-display text-sm font-bold uppercase tracking-[0.16em] text-ink-400">
-            Call or text
+            Get in touch
           </h2>
           <p className="text-sm leading-relaxed text-ink-300">{footer.contactNote}</p>
           <ul className="flex flex-col gap-2">
@@ -124,10 +124,16 @@ export default function Footer() {
             ))}
           </ul>
           <a
+            href={site.contacts.email.href}
+            className="mt-1 w-fit font-semibold text-white transition hover:text-sun-300"
+          >
+            {site.contacts.email.handle}
+          </a>
+          <a
             href={site.contacts.instagram.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1 w-fit font-semibold text-white transition hover:text-berry-300"
+            className="w-fit font-semibold text-white transition hover:text-berry-300"
           >
             Instagram {site.contacts.instagram.handle}
           </a>

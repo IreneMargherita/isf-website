@@ -75,6 +75,11 @@ export const site = {
       handle: 'DM 562-606-6160 for the link',
       href: 'https://wa.me/15626066160',
     },
+    email: {
+      label: 'Email',
+      handle: 'isfbeach@gmail.com',
+      href: 'mailto:isfbeach@gmail.com',
+    },
     phones: [
       { name: 'Arthur', display: '562-606-6160', tel: 'tel:+15626066160', sms: 'sms:+15626066160' },
       { name: 'Bob', display: '562-212-9522', tel: 'tel:+15622129522', sms: 'sms:+15622129522' },
@@ -98,9 +103,7 @@ export const nav: NavItem[] = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Events', to: '/gallery' },
-  { label: 'Stories', to: '/testimonials' },
   { label: 'Connect', to: '/connection' },
-  { label: 'Resources', to: '/resources' },
 ]
 
 /* --------------------------- WORLD MAP --------------------------- */
@@ -204,7 +207,7 @@ export const home = {
     title: 'Free Food, Fun Hangouts, and Friends Who Stick Around',
     subtitle:
       "We're Americans at Cal State Long Beach who help international students settle into life in the US. Come eat with us, come to a beach day, ask us anything. It's always free and everyone's welcome.",
-    primaryCta: { label: 'Come to an event', to: '/gallery' },
+    primaryCta: { label: 'Come to an event', to: '/gallery#upcoming' },
     secondaryCta: { label: 'Say hello', to: '/connection' },
     floatingTags: ['Free dinners', 'Beach & surf', 'Many nations', 'Real friendship'],
     stats: [
@@ -282,22 +285,11 @@ export const home = {
     ],
     cta: { label: 'Get in touch', to: '/connection' },
   },
-  volunteerInvite: {
-    eyebrow: 'For local friends & families',
-    title: 'Open your home and your calendar',
-    body: "You don't need to be an expert on anything. Host a dinner, share a hobby, give someone a ride, or just turn up and be friendly. Small things change a student's whole year.",
-    bullets: [
-      'Cook a meal or help out at a campus hangout',
-      'Give rides, run errands, lend a hand',
-      'Come along to a beach day, a surf morning or a holiday dinner',
-    ],
-    cta: { label: 'Find a way to help', to: '/connection' },
-  },
   finalCta: {
     title: "There's always room for one more",
     description:
       "Come eat with us, make a friend, and find out what it feels like to be expected somewhere. We'd love to meet you.",
-    primaryCta: { label: 'See upcoming events', to: '/gallery' },
+    primaryCta: { label: 'See upcoming events', to: '/gallery#upcoming' },
     secondaryCta: { label: 'Message us', to: '/connection' },
   },
 }
@@ -370,61 +362,6 @@ export const about = {
   },
 }
 
-/* -------------------------- TESTIMONIALS ------------------------- */
-export const testimonials = {
-  hero: {
-    eyebrow: 'Student stories',
-    title: 'In their own words',
-    subtitle: 'A real welcome leaves a mark. These are the kinds of stories we hope every student gets to tell.',
-  },
-  intro: [
-    'The quotes below are samples that reflect what ISF is like. They stay here as placeholders until real student voices replace them.',
-  ],
-  // TODO: Replace these placeholder stories with real (approved) student stories.
-  stories: [
-    {
-      quote: 'I found a family away from home. ISF gave me people who actually care how my week is going.',
-      name: 'Student from East Asia',
-      country: 'Placeholder story',
-      context: 'Graduate student',
-    },
-    {
-      quote:
-        'They helped me understand American culture, holidays, small talk, all of it, without ever making me feel stupid for asking.',
-      name: 'Student from South Asia',
-      country: 'Placeholder story',
-      context: 'Undergraduate',
-    },
-    {
-      quote: 'The dinners made me feel welcomed. I walked in a stranger and left feeling like I belonged.',
-      name: 'Student from Europe',
-      country: 'Placeholder story',
-      context: 'Exchange student',
-    },
-    {
-      quote:
-        'Nobody tried to convince me of anything. They just kept inviting me, and after a while these were my closest friends here.',
-      name: 'Student from the Middle East',
-      country: 'Placeholder story',
-      context: 'Graduate student',
-    },
-    {
-      quote:
-        'When I was homesick this group showed up for me. Beach days and shared meals got me through a hard semester.',
-      name: 'Student from Southeast Asia',
-      country: 'Placeholder story',
-      context: 'Undergraduate',
-    },
-    {
-      quote: 'I came for the free dinner and stayed for the friendships. These are people I will keep for life.',
-      name: 'Student from Latin America',
-      country: 'Placeholder story',
-      context: 'Graduate student',
-    },
-  ],
-  note: "Got a story to share? We'd love to hear it. Reach out on our Connect page.",
-}
-
 /* --------------------------- CONNECTION -------------------------- */
 export const connection = {
   hero: {
@@ -439,17 +376,18 @@ export const connection = {
   /** Big, obvious contact cards. Mirrors the postcard. */
   channels: [
     {
-      title: 'Call or text us',
+      title: 'Call, text or email',
       text: 'The quickest way to reach a real person. Ask about an event, or tell us you need a ride.',
       items: [
         { label: 'Arthur', value: '562-606-6160', href: 'sms:+15626066160' },
         { label: 'Bob', value: '562-212-9522', href: 'sms:+15622129522' },
+        { label: 'Email', value: 'isfbeach@gmail.com', href: 'mailto:isfbeach@gmail.com' },
       ],
       icon: 'phone',
     },
     {
       title: 'Join the WhatsApp group',
-      text: 'Where we post last-minute plans, rides and reminders. DM 562-606-6160 for the invite link.',
+      text: 'Where we post plans, rides and reminders. DM 562-606-6160 for the invite link.',
       items: [{ label: 'WhatsApp', value: 'Message 562-606-6160', href: 'https://wa.me/15626066160' }],
       icon: 'whatsapp',
     },
@@ -473,18 +411,6 @@ export const connection = {
       title: 'Come make some friends',
       text: "New to CSULB, or just looking for people to hang out with? Text us and we'll get you to your first dinner.",
       cta: { label: 'Text us', href: 'sms:+15626066160' },
-    },
-    {
-      audience: 'For local friends & volunteers',
-      title: 'Help us welcome students',
-      text: "Host a meal, share a hobby, give a ride, or just come and be friendly. We'll help you find a place to jump in.",
-      cta: { label: 'Get involved', href: 'sms:+15626066160' },
-    },
-    {
-      audience: 'For families & supporters',
-      title: 'Keep it free for students',
-      text: 'Groceries, gas and event costs get covered by local friends and families, so students never pay a cent.',
-      cta: { label: 'Start a conversation', href: 'sms:+15622129522' },
     },
   ],
   rides: {
@@ -536,75 +462,6 @@ export const connection = {
     ],
     submitLabel: 'Send message',
   },
-}
-
-/* ---------------------------- RESOURCES -------------------------- */
-export const resources = {
-  hero: {
-    eyebrow: 'Resources',
-    title: 'Helpful links for your first year',
-    subtitle: 'A starting point for settling in, working out how American life runs, and finding help around Long Beach.',
-  },
-  intro: [
-    'These are here to make life a little easier. The links below are placeholders for now, ready to swap for the pages and offices you actually recommend.',
-  ],
-  // TODO: Replace the placeholder '#' links with real, trusted URLs.
-  sections: [
-    {
-      title: 'New international students',
-      text: 'First steps for arriving and settling in at CSULB.',
-      links: [
-        { label: 'CSULB Center for International Education', href: '#', note: 'TODO: official link' },
-        { label: 'New student arrival checklist', href: '#', note: 'TODO' },
-        { label: 'Visa & immigration basics', href: '#', note: 'TODO' },
-      ],
-    },
-    {
-      title: 'American culture',
-      text: 'Friendly guides to customs, holidays and everyday life.',
-      links: [
-        { label: 'Understanding U.S. holidays', href: '#', note: 'TODO' },
-        { label: 'Everyday customs & etiquette', href: '#', note: 'TODO' },
-        { label: 'Slang & small talk guide', href: '#', note: 'TODO' },
-      ],
-    },
-    {
-      title: 'Making friends',
-      text: 'Ways to meet people and stop eating dinner alone.',
-      links: [
-        { label: 'ISF events & weekly dinners', href: '/gallery' },
-        { label: 'Campus clubs & student orgs', href: '#', note: 'TODO' },
-        { label: 'Conversation & language partners', href: '#', note: 'TODO' },
-      ],
-    },
-    {
-      title: 'Getting around Long Beach',
-      text: 'Transport, groceries and the practical setup stuff.',
-      links: [
-        { label: 'Public transit & getting around', href: '#', note: 'TODO' },
-        { label: 'Groceries & international markets', href: '#', note: 'TODO' },
-        { label: 'Banking & phone plans', href: '#', note: 'TODO' },
-      ],
-    },
-    {
-      title: 'Emergency & practical needs',
-      text: 'Important contacts to keep close.',
-      links: [
-        { label: 'Emergency services: 911', href: '#', note: 'In any emergency, call 911.' },
-        { label: 'CSULB campus safety', href: '#', note: 'TODO' },
-        { label: 'Student health & counseling', href: '#', note: 'TODO' },
-      ],
-    },
-    {
-      title: 'Curious about faith?',
-      text: 'Only if you want it. No pressure and no follow-up list.',
-      links: [
-        { label: 'Questions about Jesus or the Bible', href: '/connection' },
-        { label: 'Read the Bible online in your language', href: '#', note: 'TODO' },
-      ],
-    },
-  ],
-  note: "Need something that isn't here? Ask us and we'll do our best to help you find it.",
 }
 
 /* ----------------------- GALLERY & EVENTS ------------------------ */
@@ -662,18 +519,12 @@ export const gallery = {
       tag: 'Outdoors',
     },
   ],
-  // TODO: Update with real past events.
-  past: [
-    { title: 'End-of-Semester Dinner', date: 'May 2026', text: 'Celebrating a year of friendship before summer break.' },
-    { title: 'Surf Morning at Seal Beach', date: 'May 2026', text: 'First time surfers and seasoned riders shared the waves.' },
-    { title: 'Spring Hike & Picnic', date: 'April 2026', text: 'A scenic trail, packed lunches and great company.' },
-    { title: 'Lunar New Year Celebration', date: 'February 2026', text: 'Food, traditions and stories from across Asia.' },
-  ],
   cta: {
     title: 'Want to be at the next one?',
     description:
-      "Our events are open and free. Text us that you're coming and we'll save you a spot, plus a ride if you need one.",
-    primaryCta: { label: 'Text us', href: 'sms:+15626066160' },
+      "Our events are open and free. Message us that you're coming and we'll save you a spot, plus a ride if you need one.",
+    primaryCta: { label: 'Message us on WhatsApp', href: 'https://wa.me/15626066160' },
+    secondaryCta: { label: 'Email us', href: 'mailto:isfbeach@gmail.com' },
   },
 }
 
@@ -692,9 +543,7 @@ export const content = {
   impactMap,
   home,
   about,
-  testimonials,
   connection,
-  resources,
   gallery,
   footer,
 }
