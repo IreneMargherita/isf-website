@@ -205,13 +205,13 @@ export const home = {
     eyebrow: 'A recognized CSULB club · Everyone welcome',
     title: 'Free Food, Fun Hangouts, and Friends Who Stick Around',
     subtitle:
-      "We're Americans at Cal State Long Beach who help international students settle into life in the US. Come eat with us, come to a beach day, ask us anything. It's always free and everyone's welcome.",
+      "We're Americans at Cal State Long Beach who help international students settle into life in the US. Come eat with us, come to a beach day, ask us anything. Dinners and hangouts are free, and everyone's welcome.",
     primaryCta: { label: 'Come to an event', to: '/gallery#upcoming' },
     secondaryCta: { label: 'Say hello', to: '/connection' },
     floatingTags: ['Free dinners', 'Beach & surf', 'Many nations', 'Real friendship'],
     stats: [
       { value: 'Weekly', label: 'Dinners & hangouts' },
-      { value: 'Free', label: 'Always, for students' },
+      { value: 'Free', label: 'Every dinner' },
       { value: 'CSULB', label: 'Recognized club' },
     ],
   },
@@ -365,7 +365,7 @@ export const about = {
       "Somebody once set a place at the table for us, and it changed the shape of our lives. Doing the same for students who've just landed in a country that isn't theirs yet is why we keep showing up.",
       'Come hungry. Bring a friend. Tell us if you need a ride.',
     ],
-    line: 'Everyone welcome. Always free.',
+    line: 'Everyone welcome. Dinners are on us.',
   },
 }
 
@@ -516,7 +516,7 @@ export const gallery = {
     eyebrow: 'Events & photos',
     title: 'What we get up to',
     subtitle:
-      'Home dinners, surf mornings, pool parties and bonfires. Here is a look at what ISF is like and what is coming up next. Everything is free and everyone is welcome.',
+      'Home dinners, surf mornings, pool parties and bonfires. Here is a look at what ISF is like and what is coming up next. Most of it is free and everyone is welcome.',
   },
   /* Say "since 2010", never "sixteen years". A count of years is a fact
      with an expiry date: right the day it was written, then quietly wrong
@@ -530,7 +530,7 @@ export const gallery = {
   eventNotes: [
     'Vegetarian food options are available at every meal.',
     'Need a ride? Text us. Pickup is from the International House Dorm steps in parking lot #1, or the Beverly Plaza Shuttle Stop parking lot, 30 minutes before the event.',
-    'Everything is free unless we say otherwise. A few activities like surf lessons have a small cost.',
+    "Most events are free, including every dinner and hangout. Road trips, camping and surf lessons cost something, and we'll always tell you the amount before you sign up.",
   ],
   // TODO: Update each semester with the real schedule (see the printed postcard).
   upcoming: [
@@ -573,7 +573,7 @@ export const gallery = {
   cta: {
     title: 'Want to be at the next one?',
     description:
-      "Our events are open and free. Message us that you're coming and we'll save you a spot, plus a ride if you need one.",
+      "Our events are open to everyone and most of them are free. Message us that you're coming and we'll save you a spot, plus a ride if you need one.",
     primaryCta: { label: 'Message us on WhatsApp', href: 'https://wa.me/15626066160' },
     secondaryCta: { label: 'Email us', href: 'mailto:isfbeach@gmail.com' },
   },
