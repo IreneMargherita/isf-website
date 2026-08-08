@@ -47,7 +47,7 @@ export default function Header() {
       <div aria-hidden="true" className="h-1 w-full rule-rainbow" />
 
       <nav className="container-ministry flex h-[4.5rem] items-center justify-between gap-4" aria-label="Primary">
-        <Link to="/" className="group flex items-center gap-3" aria-label={`${site.name} — home`}>
+        <Link to="/" className="group flex items-center gap-3" aria-label={`${site.name}, home`}>
           <img
             src={asset('isf-logo.png')}
             alt=""
@@ -55,9 +55,13 @@ export default function Header() {
             width={48}
             height={48}
           />
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-xl font-extrabold tracking-tight text-ink-900">ISF</span>
-            <span className="mt-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-ink-500">
+          <span className="flex flex-col leading-[1.1]">
+            <span className="font-display text-[0.95rem] font-extrabold tracking-tight text-ink-900 sm:text-base">
+              International Student
+              <br />
+              Fellowship
+            </span>
+            <span className="mt-1 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-ink-500">
               Long Beach
             </span>
           </span>
@@ -140,7 +144,7 @@ export default function Header() {
           })}
           <li className="mt-2">
             <a href="sms:+15626066160" className="btn-primary w-full">
-              Text us — 562-606-6160
+              Text us at 562-606-6160
             </a>
           </li>
         </ul>

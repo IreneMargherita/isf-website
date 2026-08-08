@@ -29,12 +29,12 @@ export default function Hero() {
         <div className="flex animate-fade-up flex-col items-start gap-6">
           <MinistryTag tone="grass">{hero.eyebrow}</MinistryTag>
 
-          <h1 className="max-w-[16ch] text-[2.15rem] font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.9rem]">
-            Good Food,{' '}
-            <span className="text-coral-600">Good Friends,</span> and a{' '}
+          <h1 className="max-w-[15ch] text-[2.15rem] font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.7rem]">
+            Free Food,{' '}
+            <span className="text-coral-600">Fun Hangouts,</span> and Friends Who{' '}
             <span className="relative inline-block whitespace-nowrap">
-              <span className="relative z-10">Place to Belong</span>
-              {/* highlighter swipe, like someone marked up the sentence */}
+              <span className="relative z-10">Stick Around</span>
+              {/* highlighter swipe, like somebody marked up the sentence */}
               <span
                 aria-hidden="true"
                 className="absolute inset-x-0 bottom-0.5 z-0 h-2.5 -rotate-1 rounded-full bg-sun-300/75 sm:bottom-1 sm:h-4"
@@ -92,7 +92,7 @@ export default function Hero() {
 
             <img
               src={asset('isf-logo.png')}
-              alt="International Student Fellowship logo — a blue globe reading ISF, encircled by people of many nations holding hands"
+              alt="International Student Fellowship logo. A blue globe reading ISF, encircled by people of many nations holding hands."
               className="absolute inset-0 m-auto h-[74%] w-[74%] animate-float object-contain drop-shadow-lg"
               width={512}
               height={512}

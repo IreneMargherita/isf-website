@@ -85,7 +85,7 @@ export default function StaticForm({ title, note, fields, submitLabel }: StaticF
         className="btn-primary self-start opacity-70"
         disabled
         aria-disabled="true"
-        title="This placeholder form is not connected yet — please use the email button instead."
+        title="This placeholder form is not connected yet. Please call or text us instead."
       >
         {submitLabel}
       </button>

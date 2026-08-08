@@ -66,7 +66,7 @@ export default function Resources() {
                   <li key={link.label} className="leading-snug">
                     <ResourceLink label={link.label} href={link.href} />
                     {link.note && !link.note.startsWith('TODO') && (
-                      <span className="ml-1 text-xs text-ink-400">— {link.note}</span>
+                      <span className="ml-1 text-xs text-ink-400">({link.note})</span>
                     )}
                   </li>
                 ))}

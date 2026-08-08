@@ -49,7 +49,7 @@ export default function Footer() {
 
       <div className="container-ministry grid gap-12 py-16 md:grid-cols-12">
         <div className="flex flex-col gap-5 md:col-span-5">
-          <Link to="/" className="inline-flex w-fit items-center gap-3" aria-label={`${site.name} — home`}>
+          <Link to="/" className="inline-flex w-fit items-center gap-3" aria-label={`${site.name}, home`}>
             <span className="rounded-2xl bg-white p-2.5">
               <img src={asset('isf-logo.png')} alt="" className="h-12 w-12 object-contain" width={48} height={48} />
             </span>
