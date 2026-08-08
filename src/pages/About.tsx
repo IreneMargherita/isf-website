@@ -1,10 +1,14 @@
 import PageHero from '../components/ui/PageHero'
+import Button from '../components/ui/Button'
+import ImpactMap from '../components/sections/ImpactMap'
 import Card from '../components/ui/Card'
 import CallToAction from '../components/sections/CallToAction'
-import { about } from '../data/content'
+import { about, home } from '../data/content'
 import { accentAt } from '../lib/accents'
 
 export default function About() {
+  const { missionPreview } = home
+
   return (
     <>
       <PageHero tone="grass" eyebrow={about.hero.eyebrow} title={about.hero.title} description={about.hero.subtitle} />
@@ -33,6 +37,10 @@ export default function About() {
       </section>
 
       <section className="container-ministry py-16 sm:py-20">
+        <ImpactMap />
+      </section>
+
+      <section className="container-ministry py-16 sm:py-20">
         <div className="mx-auto max-w-3xl text-center">
           <span className="ministry-tag bg-teal-50 text-teal-800">Our approach</span>
           <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">{about.approach.title}</h2>
@@ -58,6 +66,23 @@ export default function About() {
             </li>
           ))}
         </ol>
+      </section>
+
+      {/* Moved here from the home page: this is the "why", and About is
+          where somebody has actually asked for it. */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-800 via-brand-700 to-indigo-800 text-white">
+        <div className="container-ministry grid items-center gap-8 py-16 sm:py-20 lg:grid-cols-[1.4fr_1fr]">
+          <div className="flex flex-col gap-4">
+            <span className="ministry-tag w-fit bg-white/15 text-sun-200">{missionPreview.eyebrow}</span>
+            <h2 className="text-3xl font-extrabold text-white sm:text-[2.6rem]">{missionPreview.title}</h2>
+            <p className="text-lg leading-relaxed text-white/85">{missionPreview.body}</p>
+          </div>
+          <div className="lg:justify-self-end">
+            <Button to={missionPreview.cta.to} className="!bg-white !text-brand-700 hover:!bg-sun-300 hover:!text-ink-900">
+              {missionPreview.cta.label}
+            </Button>
+          </div>
+        </div>
       </section>
 
       <section className="bg-paper-100">

@@ -40,7 +40,7 @@ function arcPath(lon: number, lat: number, shift: number) {
 }
 
 export default function ImpactMap({ className = '' }: { className?: string }) {
-  const { eyebrow, title, description, origins, note } = impactMap
+  const { eyebrow, title, description, origins } = impactMap
   const featured = origins.filter((o) => o.emphasis)
 
   return (
@@ -218,7 +218,6 @@ export default function ImpactMap({ className = '' }: { className?: string }) {
         })}
       </ul>
 
-      <p className="text-center text-sm text-ink-400">{note}</p>
     </div>
   )
 }

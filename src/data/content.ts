@@ -196,7 +196,6 @@ export const impactMap = {
   title: 'Long flights, same destination',
   description:
     'Every semester students fly into Long Beach from all over the world, most of all from Asia and Europe. Follow the lines to see the trip they made to get here.',
-  note: 'Illustrative map. Pin positions are approximate.',
   origins: ORIGINS,
 }
 
@@ -270,8 +269,8 @@ export const home = {
     eyebrow: 'Our heart',
     title: 'Friendship first, always',
     body:
-      "ISF helps students make friends with Americans and with each other, figure out how life works in the US, and explore following Jesus if they want to. The first two are most of what we actually do: dinners, beach days and long conversations. The third is an open door you can walk through or walk right past. Either way there's a seat for you at the table.",
-    cta: { label: 'Read our story', to: '/about' },
+      "We're a group of friends who've been changed by the love of Christ, and we get to share it with the world without leaving Long Beach. That looks like dinners, beach days and long conversations. It looks like learning how to pronounce your name properly and asking about the food you grew up on. Everything good about this club started with the welcome we were given, and passing it on is the whole point.",
+    cta: { label: 'See what we get up to', to: '/gallery' },
   },
   studentInvite: {
     eyebrow: 'For international students',
@@ -316,8 +315,8 @@ export const about = {
   approach: {
     title: 'How we do things',
     body: [
-      "Friendship comes first, and it isn't a tactic. We show up, we cook, we drive, we listen, because that's what friends do. A real welcome shouldn't come with conditions attached.",
-      "ISF is run by Christians and we're open about that. Some students get curious and want to talk about faith or read the Bible with us, and we love those conversations. Plenty of students never do, and they stay just as welcome for as long as they're here. Your answer changes nothing about your seat at the table.",
+      "Friendship comes first. We show up, we cook, we drive, we listen, because that's what friends do and because it's the part we enjoy most.",
+      "We're Christians, and that's not incidental. The love of Christ is why this club exists and why the table keeps getting longer. Some students want to talk about that and read the Bible with us, and those are some of our favourite evenings. Others just want dinner and a ride to the beach, and that's a good evening too.",
     ],
     steps: [
       {
@@ -333,8 +332,8 @@ export const about = {
         text: "We'll explain American holidays and slang. Honestly, we'd rather hear about yours.",
       },
       {
-        title: 'Leave the door open',
-        text: 'Curious about Jesus or the Bible? Happy to explore it together. Not curious? Nothing changes.',
+        title: 'Share what we love',
+        text: "Faith is part of who we are. Ask us anything about it, any time, and we'll be glad you did.",
       },
     ],
   },
@@ -342,7 +341,7 @@ export const about = {
     title: 'Why we cook so much',
     body: [
       "A meal buys you a couple of hours with somebody. That's really all it is. Around our tables students aren't guests to impress, they're friends to enjoy.",
-      'A shared dinner, a long conversation, a holiday you would otherwise have spent alone in a dorm room. Those small things say what a brochure never could. You were expected. Somebody saved you a seat.',
+      'A shared dinner, a long conversation, a holiday you would otherwise have spent alone in a dorm room. Those are the things people remember years later. You were expected. Somebody saved you a seat.',
     ],
   },
   csulb: {
@@ -353,12 +352,12 @@ export const about = {
     ],
   },
   pledge: {
-    title: 'What you can expect from us',
+    title: 'Why we keep doing this',
     body: [
-      "You'll never be pressured, recruited, guilted, or added to a list. If you stop coming, nobody will chase you. If you come back, you'll be welcomed like nothing happened.",
-      "You don't have to share our beliefs to belong here and you don't have to explain yourself. Come hungry, bring a friend, and tell us if you need a ride.",
+      "Somebody once set a place at the table for us, and it changed the shape of our lives. Doing the same for students who've just landed in a country that isn't theirs yet is why we keep showing up.",
+      'Come hungry. Bring a friend. Tell us if you need a ride.',
     ],
-    line: 'Everyone welcome. Always free. No pressure, ever.',
+    line: 'Everyone welcome. Always free.',
   },
 }
 

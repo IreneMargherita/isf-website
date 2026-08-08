@@ -39,11 +39,11 @@ function SocialIcon({ name }: { name: string }) {
   )
 }
 
-export default function Footer() {
+export default function Footer({ className = '' }: { className?: string }) {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="mt-24 bg-ink-900 text-ink-200">
+    <footer className={`mt-24 bg-ink-900 text-ink-200 ${className}`.trim()}>
       {/* Rainbow cap so the dark footer arrives as a flourish, not a wall */}
       <div aria-hidden="true" className="h-1.5 w-full rule-rainbow" />
 
