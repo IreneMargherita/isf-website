@@ -144,9 +144,18 @@ export default {
       },
 
       fontFamily: {
-        // Outfit is geometric and round-shouldered — it reads friendly and
-        // current, where the old Cormorant Garamond read formal/traditional.
-        display: ['Outfit', 'Inter', 'system-ui', 'sans-serif'],
+        /* Nunito is softly rounded and runs all the way up to weight 1000,
+           which is the whole reason it's here: headlines can be genuinely
+           fat and still look friendly rather than shouty. Outfit topped out
+           at 800 and read a bit generic at that weight.
+
+           Because Nunito's letterforms are lighter at any given number than
+           Outfit's, the heading weights were all shifted up one notch to
+           match: base headings 700 -> 800, and the hero and section titles
+           800 -> 900. If you ever swap this family again, expect to retune
+           those, because "bold" is a property of the typeface, not a number
+           that means the same thing everywhere. */
+        display: ['Nunito', 'Inter', 'system-ui', 'sans-serif'],
         body: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
       },
 

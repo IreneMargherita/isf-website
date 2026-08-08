@@ -29,11 +29,12 @@ export default function Hero() {
         <div className="flex animate-fade-up flex-col items-start gap-6">
           <MinistryTag tone="grass">{hero.eyebrow}</MinistryTag>
 
-          <h1 className="max-w-[15ch] text-[2.15rem] font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.7rem]">
-            Free Food,{' '}
-            <span className="text-coral-600">Fun Hangouts,</span> and Friends Who{' '}
+          <h1 className="max-w-[15ch] text-[2.15rem] font-black leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.7rem]">
+            <span className="text-teal-700">Free Food,</span>{' '}
+            <span className="text-coral-600">Fun Hangouts,</span>{' '}
+            <span className="text-ink-900">and Friends Who</span>{' '}
             <span className="relative inline-block whitespace-nowrap">
-              <span className="relative z-10">Stick Around</span>
+              <span className="relative z-10 text-grape-700">Stick Around</span>
               {/* highlighter swipe, like somebody marked up the sentence */}
               <span
                 aria-hidden="true"

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ISF headline font picker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Fredoka:wght@400;600;700&family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;800;1000&family=Gabarito:wght@400;700;900&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --teal:#0f6d70; --coral:#db3f18; --grape:#7b3f98; --ink:#1c1a18;
+    --ink6:#57514c; --sun:#fcd34d; --paper:#fbf9f6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;padding:32px 20px 80px}
+  .wrap{max-width:960px;margin:0 auto}
+  h1.page{font-size:1.5rem;margin:0 0 6px}
+  p.sub{color:var(--ink6);margin:0 0 28px;line-height:1.6}
+  .card{background:#fff;border-radius:22px;padding:26px 28px 30px;margin-bottom:22px;
+        box-shadow:0 1px 3px rgba(0,0,0,.06),0 12px 32px -18px rgba(0,0,0,.35)}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.09em;
+       text-transform:uppercase;color:#0f6d70;background:#e6f4f1;padding:6px 12px;border-radius:999px}
+  .note{font-size:.86rem;color:var(--ink6);margin:14px 0 0;line-height:1.55}
+  .headline{font-weight:800;line-height:1.08;letter-spacing:-.02em;
+            font-size:clamp(1.9rem,4.6vw,3.1rem);margin:16px 0 0}
+  .t{color:var(--teal)} .c{color:var(--coral)} .g{color:var(--grape)}
+  .hl{position:relative;display:inline-block;white-space:nowrap}
+  .hl>span{position:relative;z-index:1}
+  .hl::after{content:"";position:absolute;left:0;right:0;bottom:3px;height:.34em;
+             background:rgba(252,211,77,.75);border-radius:999px;transform:rotate(-1deg);z-index:0}
+  .small{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:baseline}
+  .small b{font-weight:700;font-size:1.05rem}
+  .small span{font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink6)}
+  .f-outfit{font-family:'Outfit',sans-serif}
+  .f-fredoka{font-family:'Fredoka',sans-serif;font-weight:700}
+  .f-baloo{font-family:'Baloo 2',sans-serif}
+  .f-nunito{font-family:'Nunito',sans-serif;font-weight:1000}
+  .f-gabarito{font-family:'Gabarito',sans-serif;font-weight:900}
+  .f-bricolage{font-family:'Bricolage Grotesque',sans-serif}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="page">Pick a headline font</h1>
+  <p class="sub">Same words, same colours, six different typefaces. Look at the big line first, then glance at the small row underneath, because the same font also has to carry your navigation and card titles. Tell me the number you want.</p>
+
+  <div class="card">
+    <span class="tag">1 &middot; Outfit (what you have now)</span>
+    <p class="headline f-outfit"><span class="t">Free Food,</span> <span class="c">Fun Hangouts,</span> and Friends Who <span class="hl g"><span>Stick Around</span></span></p>
+    <div class="small f-outfit"><b>About</b><b>Events</b><b>Connect</b><span>A recognized CSULB club</span></div>
+    <p class="note">Clean geometric sans. Friendly, but it is everywhere right now, which is probably why it reads as boring to you.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">2 &middot; Fredoka</span>
+    <p class="headline f-fredoka"><span class="t">Free Food,</span> <span class="c">Fun Hangouts,</span> and Friends Who <span class="hl g"><span>Stick Around</span></span></p>
+    <div class="small f-fredoka"><b>About</b><b>Events</b><b>Connect</b><span>A recognized CSULB club</span></div>
+    <p class="note">Rounded and chunky. The most obviously fun of the six. Reads young and warm, close to a poster for a party.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">3 &middot; Baloo 2</span>
+    <p class="headline f-baloo" style="font-weight:800"><span class="t">Free Food,</span> <span class="c">Fun Hangouts,</span> and Friends Who <span class="hl g"><span>Stick Around</span></span></p>
+    <div class="small f-baloo" style="font-weight:700"><b>About</b><b>Events</b><b>Connect</b><span>A recognized CSULB club</span></div>
+    <p class="note">Rounded with a bit of bounce and a heavier weight than Fredoka. Warmer and slightly more handmade.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">4 &middot; Nunito Black</span>
+    <p class="headline f-nunito"><span class="t">Free Food,</span> <span class="c">Fun Hangouts,</span> and Friends Who <span class="hl g"><span>Stick Around</span></span></p>
+    <div class="small f-nunito" style="font-weight:800"><b>About</b><b>Events</b><b>Connect</b><span>A recognized CSULB club</span></div>
+    <p class="note">The heaviest option. Softly rounded corners on very fat letters. Loud in a cheerful way, and excellent for a headline seen from across a room.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">5 &middot; Gabarito</span>
+    <p class="headline f-gabarito"><span class="t">Free Food,</span> <span class="c">Fun Hangouts,</span> and Friends Who <span class="hl g"><span>Stick Around</span></span></p>
+    <div class="small f-gabarito" style="font-weight:700"><b>About</b><b>Events</b><b>Connect</b><span>A recognized CSULB club</span></div>
+    <p class="note">Modern and confident with a little quirk in the letterforms. Fun without being childlike. A good middle ground.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">6 &middot; Bricolage Grotesque</span>
+    <p class="headline f-bricolage"><span class="t">Free Food,</span> <span class="c">Fun Hangouts,</span> and Friends Who <span class="hl g"><span>Stick Around</span></span></p>
+    <div class="small f-bricolage" style="font-weight:700"><b>About</b><b>Events</b><b>Connect</b><span>A recognized CSULB club</span></div>
+    <p class="note">Editorial and characterful, the kind of type a design magazine uses. Least childlike of the six, most grown-up.</p>
+  </div>
+</div>
+</body>
+</html>

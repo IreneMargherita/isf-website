@@ -28,7 +28,7 @@ export default function SectionHeader({
   return (
     <div className={`flex flex-col gap-4 ${alignClasses} ${className}`.trim()}>
       {eyebrow && <MinistryTag tone={tone}>{eyebrow}</MinistryTag>}
-      <Heading className="text-3xl font-extrabold leading-[1.12] sm:text-[2.6rem]">{title}</Heading>
+      <Heading className="text-3xl font-black leading-[1.12] sm:text-[2.6rem]">{title}</Heading>
       {description && <p className="text-lg leading-relaxed text-ink-600">{description}</p>}
     </div>
   )

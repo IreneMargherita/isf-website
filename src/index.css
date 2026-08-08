@@ -27,7 +27,7 @@
   h2,
   h3,
   h4 {
-    @apply font-display font-bold tracking-tight text-ink-900;
+    @apply font-display font-extrabold tracking-tight text-ink-900;
     text-wrap: balance;
   }
 

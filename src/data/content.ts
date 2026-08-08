@@ -232,8 +232,12 @@ export const home = {
         text: 'No sign-up sheet and no attendance list. Just people who are glad when you show up.',
       },
       {
-        title: 'No pressure, ever',
-        text: 'Come for the food and the company. Faith only comes up if you want it to.',
+        title: 'Food and plans, every week',
+        text: 'Home-cooked dinners, beach mornings, hikes, game nights and road trips. Vegetarian options at every meal, and a ride if you need one.',
+      },
+      {
+        title: 'Where this comes from',
+        text: "Christ loved us, and we want to share that love with international students. If you have questions about faith, we'd love to have that conversation.",
       },
     ],
   },
