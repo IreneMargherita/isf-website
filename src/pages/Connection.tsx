@@ -1,7 +1,7 @@
 import PageHero from '../components/ui/PageHero'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
-import StaticForm from '../components/ui/StaticForm'
+import QuestionnaireForm from '../components/ui/QuestionnaireForm'
 import { connection } from '../data/content'
 import { accentAt } from '../lib/accents'
 
@@ -117,7 +117,7 @@ export default function Connection() {
       </section>
 
       <section className="container-ministry py-16 sm:py-20">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div className="flex flex-col gap-4">
             <span className="ministry-tag w-fit bg-sun-50 text-sun-800">Good to know</span>
             <h2 className="text-3xl font-extrabold sm:text-[2.6rem]">{connection.rides.title}</h2>
@@ -133,12 +133,7 @@ export default function Connection() {
             </div>
           </div>
 
-          <StaticForm
-            title={connection.form.title}
-            note={connection.form.note}
-            fields={connection.form.fields}
-            submitLabel={connection.form.submitLabel}
-          />
+          <QuestionnaireForm />
         </div>
       </section>
     </>

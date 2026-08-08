@@ -426,40 +426,64 @@ export const connection = {
       text: "Pool parties, surf lessons, beach days, camping, culture nights. Tell us what sounds fun and we'll keep you posted.",
     },
   ],
-  form: {
-    title: 'Or send us a message',
-    // TODO: This form is a VISUAL PLACEHOLDER. It does not submit anywhere yet.
-    // Connect it later to Formspree, Google Forms, Netlify Forms, or another
-    // service. See README ("Connecting the forms") for step-by-step options.
-    note: "This form is a visual placeholder and doesn't send yet. Until it's connected, please call, text or DM us using the options above. We answer quickly.",
-    fields: [
-      { name: 'name', label: 'Your name', type: 'text', placeholder: 'First and last name', required: true },
-      { name: 'email', label: 'Email or phone', type: 'text', placeholder: 'However you prefer we reply', required: true },
-      {
-        name: 'role',
-        label: 'I am a…',
-        type: 'select',
-        placeholder: '',
-        required: false,
-        options: ['International student', 'CSULB student', 'Local volunteer', 'Just curious'],
-      },
-      {
-        name: 'interest',
-        label: 'I am interested in…',
-        type: 'select',
-        placeholder: '',
-        required: false,
-        options: ['A weekly dinner', 'An upcoming event', 'Helping out', 'A ride to an event', 'Something else'],
-      },
-      {
-        name: 'message',
-        label: 'Message',
-        type: 'textarea',
-        placeholder: 'Tell us a little about yourself…',
-        required: false,
-      },
+}
+
+/* ------------------- STUDENT QUESTIONNAIRE ----------------------- */
+/*  The web version of the printed International Student Questionnaire.
+ *
+ *  Submissions land in the "Fall 2026" Google Sheet by way of a Google
+ *  Apps Script web app. The script lives in `google-apps-script/Code.gs`
+ *  in this repo and its setup steps are in the comment at the top of
+ *  that file.
+ *
+ *  >>> PASTE THE DEPLOYED WEB APP URL INTO `endpoint` BELOW. <<<
+ *  Until it's filled in, the form shows a clear "not connected" notice
+ *  and refuses to submit, rather than swallowing a student's details.
+ *
+ *  Each `name` used by the form must match a key in the script's HEADERS
+ *  table. Change one, change the other.
+ */
+export const questionnaire = {
+  // TODO: paste the URL from Deploy > New deployment > Web app.
+  // It looks like: https://script.google.com/macros/s/AKfy..../exec
+  endpoint: '',
+
+  title: 'International Student Questionnaire',
+  intro:
+    "Fill this in and we'll know who you are before you even turn up. It takes about two minutes, and it means we can invite you to the things you'd actually enjoy.",
+  privacy:
+    'We keep this to ourselves. Your details are only used to invite you to ISF events, never shared or sold, and you can ask us to delete them any time.',
+  submitLabel: 'Send it in',
+  dialogueQuestion:
+    'I would be open to a conversation (about 30 minutes) to hear what followers of Jesus Christ believe.',
+  success: {
+    title: "Got it, thank you",
+    body: "We'll be in touch soon about what's coming up. If you'd like to say hello sooner, message us on WhatsApp.",
+  },
+  options: {
+    gender: ['Male', 'Female'],
+    year: ['Undergraduate', "Master's", 'PhD', 'Other'],
+    religions: [
+      'Atheism',
+      'Buddhism',
+      'Catholic',
+      'Christianity',
+      'Hinduism',
+      'Islam',
+      'Jainism',
+      'Meditation',
+      'Sikhism',
+      'Taoism',
+      'Nothing',
+      'Other',
     ],
-    submitLabel: 'Send message',
+    interests: [
+      { name: 'interestMuseum', label: 'A visit to a space or art museum' },
+      { name: 'interestHike', label: 'A day hike' },
+      { name: 'interestYosemite', label: 'Yosemite and family homestay weekend' },
+      { name: 'interestChurch', label: 'Visiting an American church' },
+      { name: 'interestBible', label: 'Bible discussion with students' },
+    ],
   },
 }
 
@@ -543,6 +567,7 @@ export const content = {
   home,
   about,
   connection,
+  questionnaire,
   gallery,
   footer,
 }

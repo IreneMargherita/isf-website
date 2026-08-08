@@ -111,26 +111,29 @@ in `src/index.css`.
 
 ---
 
-## Connecting the forms (later)
+## The student questionnaire form
 
-The **Connect** page includes a form that is a **visual placeholder only — it
-does not submit anywhere yet** (clearly noted in the UI). The call/text,
-WhatsApp, and Instagram links next to it reach ISF directly in the meantime.
+The **Connect** page carries the web version of the printed International
+Student Questionnaire. Submissions go straight into the "Fall 2026" Google
+Sheet through a Google Apps Script web app. No third-party form service, no
+monthly fee, and the data stays inside the ISF Google account.
 
-To make a form live, the easiest option is **Formspree** (free tier):
+Setup instructions are in the comment at the top of
+`google-apps-script/Code.gs`. The short version:
 
-1. Create a form at <https://formspree.io> and copy your endpoint
-   (e.g. `https://formspree.io/f/abcdwxyz`).
-2. Open `src/components/ui/StaticForm.tsx` and:
-   - add `action="https://formspree.io/f/abcdwxyz"` and `method="POST"` to the
-     `<form>` tag,
-   - remove the `onSubmit={(e) => e.preventDefault()}` handler,
-   - remove the `disabled` attribute on the submit button,
-   - add a `name` to each field (already present).
-3. Commit and push — the site redeploys automatically.
+1. Open the sheet, then Extensions > Apps Script, and paste that file in.
+2. Run `setUpSheet` once to write the column headers.
+3. Deploy > New deployment > Web app, "Execute as: Me",
+   "Who has access: Anyone", and copy the `/exec` URL.
+4. Paste that URL into `questionnaire.endpoint` in `src/data/content.ts`.
 
-Other options: **Google Forms** (embed or link), **Netlify Forms** (if hosted on
-Netlify), or any form service that accepts a POST.
+Until step 4 is done the form shows a "not connected" notice and refuses to
+submit, so nobody's details are ever lost silently.
+
+**If you add or rename a form field**, update `HEADERS` in `Code.gs` to match,
+re-run `setUpSheet`, and redeploy the script (Deploy > Manage deployments >
+pencil > Version: New version). The field `name` in the form and the key in
+`HEADERS` have to be identical.
 
 ---
 
