@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { footer, nav, site } from '../../data/content'
+import { accentAt } from '../../lib/accents'
 import { asset } from '../../lib/asset'
 
 function SocialIcon({ name }: { name: string }) {
@@ -42,77 +43,106 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="mt-20 border-t border-ink-900/5 bg-cream-100">
-      <div className="container-ministry grid gap-10 py-14 md:grid-cols-12">
-        <div className="flex flex-col gap-4 md:col-span-5">
-          <Link to="/" className="flex items-center gap-3" aria-label={`${site.name} — home`}>
-            <img src={asset('isf-logo.svg')} alt="" className="h-12 w-12" width={48} height={48} />
-            <span className="font-display text-xl font-bold leading-tight text-ink-900">
-              International Student<br />Fellowship
+    <footer className="mt-24 bg-ink-900 text-ink-200">
+      {/* Rainbow cap so the dark footer arrives as a flourish, not a wall */}
+      <div aria-hidden="true" className="h-1.5 w-full rule-rainbow" />
+
+      <div className="container-ministry grid gap-12 py-16 md:grid-cols-12">
+        <div className="flex flex-col gap-5 md:col-span-5">
+          <Link to="/" className="inline-flex w-fit items-center gap-3" aria-label={`${site.name} — home`}>
+            <span className="rounded-2xl bg-white p-2.5">
+              <img src={asset('isf-logo.png')} alt="" className="h-12 w-12 object-contain" width={48} height={48} />
+            </span>
+            <span className="font-display text-xl font-extrabold leading-tight text-white">
+              International Student
+              <br />
+              Fellowship
             </span>
           </Link>
-          <p className="max-w-sm leading-relaxed text-ink-600">{footer.mission}</p>
-          <div className="flex items-center gap-2 pt-1">
-            {site.social.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                aria-label={s.label}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink-600 shadow-sm ring-1 ring-ink-900/5 transition hover:text-ruby-700"
-                {...(s.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              >
-                <SocialIcon name={s.icon} />
-              </a>
-            ))}
+          <p className="max-w-sm leading-relaxed text-ink-300">{footer.mission}</p>
+
+          <div className="flex items-center gap-2.5 pt-1">
+            {site.social.map((s, i) => {
+              const accent = accentAt(i * 3)
+              return (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  aria-label={s.label}
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:-translate-y-0.5"
+                  style={{ ['--hover' as string]: accent.hex }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = accent.hex)}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '')}
+                  {...(s.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  <SocialIcon name={s.icon} />
+                </a>
+              )
+            })}
           </div>
         </div>
 
-        <nav className="md:col-span-4" aria-label="Footer">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-ink-500">Explore</h2>
-          <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2">
-            {nav.map((item) => (
-              <li key={item.to}>
-                <Link to={item.to} className="text-ink-600 transition hover:text-ruby-700">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+        <nav className="md:col-span-3" aria-label="Footer">
+          <h2 className="font-display text-sm font-bold uppercase tracking-[0.16em] text-ink-400">Explore</h2>
+          <ul className="mt-5 flex flex-col gap-2.5">
+            {nav.map((item, i) => {
+              const accent = accentAt(i)
+              return (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    className="group inline-flex items-center gap-2.5 text-ink-200 transition hover:text-white"
+                  >
+                    <span
+                      className={`h-2 w-2 rounded-full ${accent.solid} transition-transform group-hover:scale-150`}
+                      aria-hidden="true"
+                    />
+                    {item.label}
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
         </nav>
 
-        <div className="flex flex-col gap-2 md:col-span-3">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-ink-500">Call or text</h2>
-          <p className="text-sm text-ink-600">{footer.contactNote}</p>
-          <ul className="flex flex-col gap-1">
+        <div className="flex flex-col gap-3 md:col-span-4">
+          <h2 className="font-display text-sm font-bold uppercase tracking-[0.16em] text-ink-400">
+            Call or text
+          </h2>
+          <p className="text-sm leading-relaxed text-ink-300">{footer.contactNote}</p>
+          <ul className="flex flex-col gap-2">
             {site.contacts.phones.map((p) => (
-              <li key={p.display} className="text-sm">
-                <span className="text-ink-500">{p.name}</span>{' '}
-                <a className="link-ministry" href={p.tel}>
+              <li key={p.display}>
+                <a
+                  href={p.tel}
+                  className="inline-flex items-baseline gap-2 font-semibold text-white transition hover:text-sun-300"
+                >
+                  <span className="text-xs font-medium uppercase tracking-wider text-ink-400">{p.name}</span>
                   {p.display}
                 </a>
               </li>
             ))}
           </ul>
-          <p className="pt-1 text-sm">
-            <a
-              className="link-ministry"
-              href={site.contacts.instagram.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Instagram {site.contacts.instagram.handle}
-            </a>
+          <a
+            href={site.contacts.instagram.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1 w-fit font-semibold text-white transition hover:text-berry-300"
+          >
+            Instagram {site.contacts.instagram.handle}
+          </a>
+          <p className="mt-3 rounded-xl bg-white/5 px-4 py-3 text-xs leading-relaxed text-ink-300">
+            {footer.clubNote}
           </p>
-          <p className="pt-2 text-xs text-ink-400">{footer.clubNote}</p>
         </div>
       </div>
 
-      <div className="border-t border-ink-900/5">
-        <div className="container-ministry flex flex-col items-center justify-between gap-2 py-6 text-sm text-ink-500 sm:flex-row">
+      <div className="border-t border-white/10">
+        <div className="container-ministry flex flex-col items-center justify-between gap-2 py-6 text-sm text-ink-400 sm:flex-row">
           <p>
-            &copy; {year} {site.name}. All rights reserved.
+            &copy; {year} {site.name}
           </p>
-          <p>Made with care for students far from home.</p>
+          <p>Everyone welcome. Always free.</p>
         </div>
       </div>
     </footer>

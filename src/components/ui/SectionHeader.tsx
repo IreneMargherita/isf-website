@@ -1,7 +1,5 @@
 import type { ReactNode } from 'react'
-import MinistryTag from './MinistryTag'
-
-type Tone = 'ruby' | 'ocean' | 'gold' | 'sage'
+import MinistryTag, { type Tone } from './MinistryTag'
 
 interface SectionHeaderProps {
   eyebrow?: string
@@ -18,7 +16,7 @@ export default function SectionHeader({
   title,
   description,
   align = 'center',
-  tone = 'ruby',
+  tone = 'coral',
   as: Heading = 'h2',
   className = '',
 }: SectionHeaderProps) {
@@ -30,7 +28,7 @@ export default function SectionHeader({
   return (
     <div className={`flex flex-col gap-4 ${alignClasses} ${className}`.trim()}>
       {eyebrow && <MinistryTag tone={tone}>{eyebrow}</MinistryTag>}
-      <Heading className="text-3xl font-semibold leading-tight sm:text-4xl">{title}</Heading>
+      <Heading className="text-3xl font-extrabold leading-[1.12] sm:text-[2.6rem]">{title}</Heading>
       {description && <p className="text-lg leading-relaxed text-ink-600">{description}</p>}
     </div>
   )

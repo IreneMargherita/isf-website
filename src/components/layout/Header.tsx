@@ -1,16 +1,27 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { nav, site } from '../../data/content'
+import { accentAt } from '../../lib/accents'
 import { asset } from '../../lib/asset'
 
 export default function Header() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const { pathname } = useLocation()
 
   // Close the mobile menu whenever the route changes.
   useEffect(() => {
     setOpen(false)
   }, [pathname])
+
+  // Give the bar a shadow once the page has scrolled, so it detaches
+  // visually from the hero instead of floating ambiguously over it.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   // While the mobile menu is open: close on Escape and lock background scroll.
   useEffect(() => {
@@ -26,48 +37,69 @@ export default function Header() {
     }
   }, [open])
 
-  const desktopLink = ({ isActive }: { isActive: boolean }) =>
-    `rounded-full px-3 py-2 text-sm font-medium transition ${
-      isActive ? 'bg-ruby-50 text-ruby-700' : 'text-ink-600 hover:bg-cream-100 hover:text-ruby-700'
-    }`
-
-  const mobileLink = ({ isActive }: { isActive: boolean }) =>
-    `block rounded-xl px-4 py-3 text-base font-medium transition ${
-      isActive ? 'bg-ruby-50 text-ruby-700' : 'text-ink-700 hover:bg-cream-100'
-    }`
-
   return (
-    <header className="sticky top-0 z-40 border-b border-ink-900/5 bg-cream-50/85 backdrop-blur supports-[backdrop-filter]:bg-cream-50/70">
-      <nav className="container-ministry flex h-16 items-center justify-between gap-4" aria-label="Primary">
-        <Link to="/" className="flex items-center gap-3" aria-label={`${site.name} — home`}>
-          <img src={asset('isf-logo.svg')} alt="" className="h-10 w-10" width={40} height={40} />
+    <header
+      className={`sticky top-0 z-40 bg-paper-50/90 backdrop-blur transition-shadow supports-[backdrop-filter]:bg-paper-50/75 ${
+        scrolled ? 'shadow-[0_6px_24px_-16px_rgba(28,26,24,0.4)]' : ''
+      }`}
+    >
+      {/* Rainbow hairline — a two-pixel nod to the Welcome banner */}
+      <div aria-hidden="true" className="h-1 w-full rule-rainbow" />
+
+      <nav className="container-ministry flex h-[4.5rem] items-center justify-between gap-4" aria-label="Primary">
+        <Link to="/" className="group flex items-center gap-3" aria-label={`${site.name} — home`}>
+          <img
+            src={asset('isf-logo.png')}
+            alt=""
+            className="h-12 w-12 shrink-0 object-contain transition-transform duration-300 group-hover:rotate-6"
+            width={48}
+            height={48}
+          />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-lg font-bold text-ink-900">ISF</span>
-            <span className="text-[0.65rem] uppercase tracking-[0.16em] text-ink-500">Long Beach</span>
+            <span className="font-display text-xl font-extrabold tracking-tight text-ink-900">ISF</span>
+            <span className="mt-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-ink-500">
+              Long Beach
+            </span>
           </span>
         </Link>
 
-        {/* Desktop navigation */}
-        <ul className="hidden items-center gap-0.5 lg:flex">
-          {nav.map((item) => (
-            <li key={item.to}>
-              <NavLink to={item.to} end={item.to === '/'} className={desktopLink}>
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
+        {/* Desktop navigation — each item owns one accent colour, so the
+            nav reads as a row of friendly tabs rather than grey text. */}
+        <ul className="hidden items-center gap-1 lg:flex">
+          {nav.map((item, i) => {
+            const accent = accentAt(i)
+            return (
+              <li key={item.to}>
+                <NavLink
+                  to={item.to}
+                  end={item.to === '/'}
+                  className={({ isActive }) =>
+                    `rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                      isActive ? accent.chip : 'text-ink-600 hover:bg-paper-200 hover:text-ink-900'
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            )
+          })}
         </ul>
+
+        <a href="sms:+15626066160" className="btn-primary hidden !px-5 !py-2.5 xl:inline-flex">
+          Text us
+        </a>
 
         {/* Mobile toggle */}
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-full p-2 text-ink-700 transition hover:bg-cream-100 lg:hidden"
+          className="inline-flex items-center justify-center rounded-full p-2.5 text-ink-700 transition hover:bg-brand-50 lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
           onClick={() => setOpen((v) => !v)}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
             {open ? (
               <>
                 <line x1="6" y1="6" x2="18" y2="18" />
@@ -86,14 +118,31 @@ export default function Header() {
 
       {/* Mobile menu panel */}
       <div id="mobile-menu" className={open ? 'lg:hidden' : 'hidden'}>
-        <ul className="container-ministry flex flex-col gap-1 border-t border-ink-900/5 py-4">
-          {nav.map((item) => (
-            <li key={item.to}>
-              <NavLink to={item.to} end={item.to === '/'} className={mobileLink}>
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
+        <ul className="container-ministry flex flex-col gap-1.5 border-t border-ink-900/5 py-4">
+          {nav.map((item, i) => {
+            const accent = accentAt(i)
+            return (
+              <li key={item.to}>
+                <NavLink
+                  to={item.to}
+                  end={item.to === '/'}
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 rounded-2xl px-4 py-3.5 text-base font-semibold transition ${
+                      isActive ? accent.chip : 'text-ink-700 hover:bg-paper-100'
+                    }`
+                  }
+                >
+                  <span className={`h-2.5 w-2.5 rounded-full ${accent.solid}`} aria-hidden="true" />
+                  {item.label}
+                </NavLink>
+              </li>
+            )
+          })}
+          <li className="mt-2">
+            <a href="sms:+15626066160" className="btn-primary w-full">
+              Text us — 562-606-6160
+            </a>
+          </li>
         </ul>
       </div>
     </header>

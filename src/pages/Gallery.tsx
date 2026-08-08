@@ -3,12 +3,18 @@ import Card from '../components/ui/Card'
 import CallToAction from '../components/sections/CallToAction'
 import SectionHeader from '../components/ui/SectionHeader'
 import { gallery } from '../data/content'
+import { accentAt, accentByName } from '../lib/accents'
 
 const toneGradient: Record<string, string> = {
-  ruby: 'from-ruby-200 to-ruby-400',
-  ocean: 'from-ocean-200 to-ocean-400',
-  sage: 'from-sage-200 to-sage-400',
-  gold: 'from-gold-200 to-gold-400',
+  red: 'from-red-300 to-red-500',
+  coral: 'from-coral-300 to-coral-500',
+  sun: 'from-sun-300 to-sun-500',
+  grass: 'from-grass-300 to-grass-500',
+  teal: 'from-teal-300 to-teal-500',
+  sky: 'from-sky-300 to-sky-500',
+  indigo: 'from-indigo-300 to-indigo-500',
+  grape: 'from-grape-300 to-grape-500',
+  berry: 'from-berry-300 to-berry-500',
 }
 
 function ImageIcon() {
@@ -46,6 +52,7 @@ export default function Gallery() {
   return (
     <>
       <PageHero
+        tone="sun"
         eyebrow={gallery.hero.eyebrow}
         title={gallery.hero.title}
         description={gallery.hero.subtitle}
@@ -67,7 +74,7 @@ export default function Gallery() {
               key={cat.title}
               className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-ministry ring-1 ring-ink-900/5"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${toneGradient[cat.tone] ?? toneGradient.ruby}`} />
+              <div className={`absolute inset-0 bg-gradient-to-br ${toneGradient[cat.tone] ?? toneGradient.coral}`} />
               <div className="absolute inset-0 flex items-center justify-center text-white/45">
                 <ImageIcon />
               </div>
@@ -88,20 +95,27 @@ export default function Gallery() {
           <SectionHeader eyebrow="Save the date" title="Upcoming events" align="left" />
 
           <ul className="mt-8 flex flex-col gap-2.5">
-            {gallery.eventNotes.map((note) => (
+            {gallery.eventNotes.map((note, i) => (
               <li key={note} className="flex items-start gap-2.5 leading-relaxed text-ink-600">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ruby-500" aria-hidden="true" />
+                <span
+                  className="mt-2 h-2 w-2 shrink-0 rounded-full"
+                  style={{ backgroundColor: accentByName(['sun', 'grass', 'sky'][i % 3]).hex }}
+                  aria-hidden="true"
+                />
                 <span>{note}</span>
               </li>
             ))}
           </ul>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {gallery.upcoming.map((ev) => (
-              <Card key={ev.title} hover className="flex flex-col gap-3 bg-white">
+            {gallery.upcoming.map((ev, i) => {
+              const accent = accentAt(i * 2)
+              return (
+              <Card key={ev.title} hover className="relative flex flex-col gap-3 overflow-hidden bg-white">
+                <span aria-hidden="true" className={`absolute inset-y-0 left-0 w-1.5 ${accent.solid}`} />
                 <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-xl font-semibold text-ink-900">{ev.title}</h3>
-                  <span className="shrink-0 rounded-full bg-ruby-50 px-3 py-1 text-xs font-semibold text-ruby-700">
+                  <h3 className="text-xl font-bold text-ink-900">{ev.title}</h3>
+                  <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${accent.chip}`}>
                     {ev.tag}
                   </span>
                 </div>
@@ -111,7 +125,8 @@ export default function Gallery() {
                 </div>
                 <p className="leading-relaxed text-ink-600">{ev.text}</p>
               </Card>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -119,9 +134,9 @@ export default function Gallery() {
       <section className="container-ministry py-16 sm:py-20">
         <SectionHeader eyebrow="Looking back" title="Past gatherings" align="left" />
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {gallery.past.map((ev) => (
+          {gallery.past.map((ev, i) => (
             <Card key={ev.title} className="flex flex-col gap-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-ocean-600">{ev.date}</span>
+              <span className={`text-xs font-bold uppercase tracking-wider ${accentAt(i * 3 + 1).text}`}>{ev.date}</span>
               <h3 className="text-lg font-semibold text-ink-900">{ev.title}</h3>
               <p className="text-sm leading-relaxed text-ink-600">{ev.text}</p>
             </Card>

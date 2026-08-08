@@ -1,15 +1,15 @@
 import SectionHeader from '../ui/SectionHeader'
-import Card from '../ui/Card'
 import { home } from '../../data/content'
+import { accentAt } from '../../lib/accents'
 
 function RhythmIcon({ name }: { name: string }) {
   const common = {
-    width: 26,
-    height: 26,
+    width: 30,
+    height: 30,
     viewBox: '0 0 24 24',
     fill: 'none',
     stroke: 'currentColor',
-    strokeWidth: 1.7,
+    strokeWidth: 1.8,
     strokeLinecap: 'round' as const,
     strokeLinejoin: 'round' as const,
     'aria-hidden': true as const,
@@ -58,17 +58,28 @@ export default function WeeklyRhythm() {
         eyebrow={weeklyRhythm.eyebrow}
         title={weeklyRhythm.title}
         description={weeklyRhythm.description}
+        tone="teal"
       />
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {weeklyRhythm.items.map((item) => (
-          <Card key={item.title} hover className="flex flex-col gap-4">
-            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-ruby-50 text-ruby-600">
-              <RhythmIcon name={item.icon} />
-            </span>
-            <h3 className="text-xl font-semibold text-ink-900">{item.title}</h3>
-            <p className="leading-relaxed text-ink-600">{item.text}</p>
-          </Card>
-        ))}
+        {weeklyRhythm.items.map((item, i) => {
+          const accent = accentAt(i * 2 + 1)
+          return (
+            <article
+              key={item.title}
+              className="group relative flex flex-col gap-4 overflow-hidden rounded-ministry bg-white p-6 pt-7 shadow-ministry ring-1 ring-ink-900/5 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-ministry-lg"
+            >
+              {/* colour bar identifies the card at a glance */}
+              <span aria-hidden="true" className={`absolute inset-x-0 top-0 h-1.5 ${accent.solid}`} />
+              <span
+                className={`flex h-14 w-14 items-center justify-center rounded-2xl ${accent.tile} transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110`}
+              >
+                <RhythmIcon name={item.icon} />
+              </span>
+              <h3 className="text-xl font-bold text-ink-900">{item.title}</h3>
+              <p className="leading-relaxed text-ink-600">{item.text}</p>
+            </article>
+          )
+        })}
       </div>
     </section>
   )

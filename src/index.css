@@ -4,9 +4,10 @@
 
 /* ============================================================
    ISF DESIGN SYSTEM
-   Custom utility/component classes built on the Tailwind tokens
-   defined in tailwind.config.js. Components reference these so
-   styling stays consistent and easy to retune in one place.
+   Component classes built on the tokens in tailwind.config.js.
+   Read the comment block at the top of that file first — it
+   explains the one rule that keeps this palette from getting
+   messy: brand blue is functional, everything else is joy.
    ============================================================ */
 
 @layer base {
@@ -19,20 +20,21 @@
   }
 
   body {
-    @apply bg-cream-50 font-body text-ink-700 antialiased;
+    @apply bg-paper-50 font-body text-ink-700 antialiased;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply font-display text-ink-900;
+    @apply font-display font-bold tracking-tight text-ink-900;
     text-wrap: balance;
   }
 
-  /* Keep focus rings visible & on-brand for keyboard users */
+  /* Keyboard focus must always be obvious — this is the single most
+     commonly skipped accessibility requirement in hand-built sites. */
   :focus-visible {
-    @apply outline-none ring-2 ring-ruby-500 ring-offset-2 ring-offset-cream-50;
+    @apply outline-none ring-4 ring-brand-400/60 ring-offset-2 ring-offset-paper-50;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -55,77 +57,113 @@
     @apply mx-auto w-full max-w-ministry px-5 sm:px-8;
   }
 
-  /* ---- Buttons --------------------------------------------- */
+  /* ---- Buttons ---------------------------------------------
+     Only ever brand blue (or white-on-colour inside a coloured
+     band). Consistency here is what makes the rainbow elsewhere
+     feel designed rather than random. */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ruby-600 px-6 py-3
-      text-sm font-semibold tracking-wide text-white shadow-ministry transition
-      hover:-translate-y-0.5 hover:bg-ruby-700 active:translate-y-0
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5
+      text-sm font-bold tracking-wide text-white shadow-ministry transition-all duration-200
+      hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-ministry-lg active:translate-y-0
       disabled:pointer-events-none disabled:opacity-60;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ruby-200
-      bg-white/80 px-6 py-3 text-sm font-semibold tracking-wide text-ruby-700 shadow-sm
-      backdrop-blur transition hover:-translate-y-0.5 hover:border-ruby-300 hover:bg-ruby-50
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-200
+      bg-white px-7 py-3.5 text-sm font-bold tracking-wide text-brand-700 shadow-sm
+      transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-400 hover:bg-brand-50
       active:translate-y-0;
   }
 
   /* ---- Cards ----------------------------------------------- */
   .card-ministry {
-    @apply rounded-ministry bg-white p-6 shadow-ministry ring-1 ring-ink-900/5 transition;
+    @apply rounded-ministry bg-white p-6 shadow-ministry ring-1 ring-ink-900/5 transition-all duration-200;
   }
 
   .card-ministry-hover {
-    @apply hover:-translate-y-1 hover:shadow-ministry-lg;
+    @apply hover:-translate-y-1.5 hover:shadow-ministry-lg;
   }
 
-  /* ---- Ministry tag (eyebrow pill) ------------------------- */
+  /* ---- Eyebrow pill ---------------------------------------- */
   .ministry-tag {
-    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold
+    @apply inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold
       uppercase tracking-[0.14em];
   }
 
-  /* ---- Section divider ------------------------------------- */
+  /* ---- Dividers -------------------------------------------- */
+  /* A rainbow hairline instead of a single-colour rule — small
+     detail, but it carries the Welcome-banner idea through. */
   .section-divider {
-    @apply mx-auto h-px w-full max-w-xs bg-gradient-to-r from-transparent via-ruby-300/70 to-transparent;
+    @apply mx-auto h-1 w-full max-w-xs rounded-full;
+    background-image: linear-gradient(
+      90deg,
+      #ea3947 0%, #f2582f 16%, #fdbc20 32%, #57b65c 48%,
+      #1aa2a7 62%, #3a6fc9 76%, #b65bb3 88%, #e6489e 100%
+    );
   }
 
-  /* A small decorative diamond divider used inside hero/section headers */
   .divider-diamond {
-    @apply relative flex items-center justify-center gap-3 text-ruby-400;
+    @apply relative flex items-center justify-center gap-3 text-coral-400;
   }
   .divider-diamond::before,
   .divider-diamond::after {
     content: '';
-    @apply h-px w-12 bg-ruby-200;
+    @apply h-1 w-14 rounded-full;
+    background-image: linear-gradient(90deg, #fdbc20, #f2582f);
   }
 
   /* Link styling inside body copy */
   .link-ministry {
-    @apply font-medium text-ruby-700 underline decoration-ruby-300 decoration-2 underline-offset-2
-      transition hover:text-ruby-800 hover:decoration-ruby-500;
+    @apply font-semibold text-brand-700 underline decoration-brand-300 decoration-2 underline-offset-2
+      transition hover:text-brand-800 hover:decoration-brand-500;
+  }
+
+  /* Inputs for the contact form */
+  .form-input {
+    @apply w-full rounded-xl border-2 border-ink-200 bg-paper-50 px-4 py-3 text-ink-800
+      transition placeholder:text-ink-400 focus:border-brand-400 focus:bg-white;
+  }
+
+  /* ---- The multilingual welcome strip ----------------------- */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   }
 }
 
 @layer utilities {
-  /* Soft warm radial used behind hero / CTA bands */
+  /* Soft blue wash behind the hero */
   .bg-ministry-radial {
-    background-image: radial-gradient(
-      120% 120% at 50% 0%,
-      rgba(168, 43, 65, 0.10) 0%,
-      rgba(168, 43, 65, 0) 55%
+    background-image:
+      radial-gradient(90% 80% at 12% 0%, rgba(58, 111, 201, 0.14) 0%, rgba(58, 111, 201, 0) 60%),
+      radial-gradient(70% 70% at 92% 18%, rgba(230, 72, 158, 0.12) 0%, rgba(230, 72, 158, 0) 62%),
+      radial-gradient(80% 70% at 55% 100%, rgba(253, 188, 32, 0.16) 0%, rgba(253, 188, 32, 0) 60%);
+  }
+
+  /* Confetti dots echoing the coloured heads in the logo ring */
+  .bg-confetti {
+    background-image:
+      radial-gradient(circle, rgba(234, 57, 71, 0.55) 2px, transparent 2.5px),
+      radial-gradient(circle, rgba(58, 111, 201, 0.5) 2px, transparent 2.5px),
+      radial-gradient(circle, rgba(253, 188, 32, 0.55) 2px, transparent 2.5px),
+      radial-gradient(circle, rgba(87, 182, 92, 0.5) 2px, transparent 2.5px);
+    background-size: 120px 120px, 120px 120px, 120px 120px, 120px 120px;
+    background-position: 0 0, 40px 62px, 78px 22px, 22px 96px;
+  }
+
+  /* Rainbow top rule for cards */
+  .rule-rainbow {
+    background-image: linear-gradient(
+      90deg,
+      #ea3947, #f2582f, #fdbc20, #57b65c, #1aa2a7, #3a6fc9, #b65bb3, #e6489e
     );
   }
 
   .text-balance {
     text-wrap: balance;
   }
-}
 
-@layer components {
-  /* Inputs for the (placeholder) contact & prayer forms */
-  .form-input {
-    @apply w-full rounded-xl border border-ink-200 bg-cream-50 px-4 py-2.5 text-ink-800
-      transition placeholder:text-ink-400 focus:border-ruby-400 focus:bg-white;
+  .pause-on-hover:hover > * {
+    animation-play-state: paused;
   }
 }

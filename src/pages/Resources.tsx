@@ -3,12 +3,13 @@ import PageHero from '../components/ui/PageHero'
 import Card from '../components/ui/Card'
 import { ArrowIcon } from '../components/ui/icons'
 import { resources } from '../data/content'
+import { accentAt } from '../lib/accents'
 
 function ResourceLink({ label, href }: { label: string; href: string }) {
   const isInternal = href.startsWith('/')
   const content = (
     <>
-      <span className="text-ruby-400">
+      <span className="text-brand-500">
         <ArrowIcon />
       </span>
       <span>{label}</span>
@@ -37,6 +38,7 @@ export default function Resources() {
   return (
     <>
       <PageHero
+        tone="indigo"
         eyebrow={resources.hero.eyebrow}
         title={resources.hero.title}
         description={resources.hero.subtitle}
@@ -52,10 +54,11 @@ export default function Resources() {
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {resources.sections.map((sec) => (
-            <Card key={sec.title} className="flex flex-col gap-4">
+          {resources.sections.map((sec, i) => (
+            <Card key={sec.title} hover className="relative flex flex-col gap-4 overflow-hidden">
+              <span aria-hidden="true" className={`absolute inset-y-0 left-0 w-1.5 ${accentAt(i).solid}`} />
               <div>
-                <h2 className="text-xl font-semibold text-ink-900">{sec.title}</h2>
+                <h2 className="text-xl font-bold text-ink-900">{sec.title}</h2>
                 <p className="mt-1 leading-relaxed text-ink-600">{sec.text}</p>
               </div>
               <ul className="flex flex-col gap-2.5">

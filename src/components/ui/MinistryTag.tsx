@@ -1,12 +1,15 @@
 import type { ReactNode } from 'react'
+import { accentByName, type AccentName } from '../../lib/accents'
 
-type Tone = 'ruby' | 'ocean' | 'gold' | 'sage'
+/** Any expressive accent, plus the functional brand blue. */
+export type Tone = AccentName | 'brand' | 'ruby' | 'ocean' | 'gold' | 'sage'
 
-const toneClass: Record<Tone, string> = {
-  ruby: 'bg-ruby-50 text-ruby-700',
-  ocean: 'bg-ocean-50 text-ocean-700',
-  gold: 'bg-gold-50 text-gold-600',
-  sage: 'bg-sage-50 text-sage-600',
+/** Old tone names from the first version of the site still resolve. */
+const legacy: Record<string, AccentName> = {
+  ruby: 'coral',
+  ocean: 'sky',
+  gold: 'sun',
+  sage: 'grass',
 }
 
 interface MinistryTagProps {
@@ -15,6 +18,12 @@ interface MinistryTagProps {
   className?: string
 }
 
-export default function MinistryTag({ children, tone = 'ruby', className = '' }: MinistryTagProps) {
-  return <span className={`ministry-tag ${toneClass[tone]} ${className}`.trim()}>{children}</span>
+export default function MinistryTag({ children, tone = 'coral', className = '' }: MinistryTagProps) {
+  if (tone === 'brand') {
+    return (
+      <span className={`ministry-tag bg-brand-50 text-brand-700 ${className}`.trim()}>{children}</span>
+    )
+  }
+  const accent = accentByName(legacy[tone] ?? tone)
+  return <span className={`ministry-tag ${accent.chip} ${className}`.trim()}>{children}</span>
 }

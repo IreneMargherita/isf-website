@@ -3,6 +3,7 @@ import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import StaticForm from '../components/ui/StaticForm'
 import { connection } from '../data/content'
+import { accentAt } from '../lib/accents'
 
 function ChannelIcon({ name }: { name: string }) {
   const common = {
@@ -45,6 +46,7 @@ export default function Connection() {
   return (
     <>
       <PageHero
+        tone="teal"
         eyebrow={connection.hero.eyebrow}
         title={connection.hero.title}
         description={connection.hero.subtitle}
@@ -61,13 +63,16 @@ export default function Connection() {
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {connection.channels.map((ch) => (
-            <Card key={ch.title} hover className="flex flex-col gap-4">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-ruby-50 text-ruby-600">
+          {connection.channels.map((ch, i) => {
+            const accent = accentAt(i * 3 + 4)
+            return (
+            <Card key={ch.title} hover className="relative flex flex-col gap-4 overflow-hidden">
+              <span aria-hidden="true" className={`absolute inset-x-0 top-0 h-1.5 ${accent.solid}`} />
+              <span className={`flex h-14 w-14 items-center justify-center rounded-2xl ${accent.tile}`}>
                 <ChannelIcon name={ch.icon} />
               </span>
               <div>
-                <h2 className="text-xl font-semibold text-ink-900">{ch.title}</h2>
+                <h2 className="text-xl font-bold text-ink-900">{ch.title}</h2>
                 <p className="mt-1 leading-relaxed text-ink-600">{ch.text}</p>
               </div>
               <ul className="mt-auto flex flex-col gap-2 pt-1">
@@ -89,17 +94,18 @@ export default function Connection() {
                 ))}
               </ul>
             </Card>
-          ))}
+            )
+          })}
         </div>
       </section>
 
-      <section className="bg-cream-100/70">
+      <section className="bg-paper-100">
         <div className="container-ministry py-16 sm:py-20">
           <div className="grid gap-6 md:grid-cols-3">
-            {connection.paths.map((p) => (
-              <Card key={p.audience} className="flex flex-col gap-3 bg-white">
-                <span className="ministry-tag w-fit bg-ruby-50 text-ruby-700">{p.audience}</span>
-                <h2 className="text-xl font-semibold text-ink-900">{p.title}</h2>
+            {connection.paths.map((p, i) => (
+              <Card key={p.audience} hover className="flex flex-col gap-3 bg-white">
+                <span className={`ministry-tag w-fit ${accentAt(i * 4).chip}`}>{p.audience}</span>
+                <h2 className="text-xl font-bold text-ink-900">{p.title}</h2>
                 <p className="flex-1 leading-relaxed text-ink-600">{p.text}</p>
                 <div>
                   <Button href={p.cta.href}>{p.cta.label}</Button>
@@ -113,14 +119,14 @@ export default function Connection() {
       <section className="container-ministry py-16 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
           <div className="flex flex-col gap-4">
-            <span className="ministry-tag w-fit bg-sage-50 text-sage-600">Good to know</span>
-            <h2 className="text-3xl font-semibold sm:text-4xl">{connection.rides.title}</h2>
+            <span className="ministry-tag w-fit bg-sun-50 text-sun-800">Good to know</span>
+            <h2 className="text-3xl font-extrabold sm:text-[2.6rem]">{connection.rides.title}</h2>
             <p className="text-lg leading-relaxed text-ink-600">{connection.rides.body}</p>
 
             <div className="mt-2 grid gap-4">
               {connection.interests.map((it) => (
-                <div key={it.title} className="rounded-2xl bg-cream-100 p-6 ring-1 ring-ink-900/5">
-                  <h3 className="text-lg font-semibold text-ink-900">{it.title}</h3>
+                <div key={it.title} className="rounded-2xl bg-paper-100 p-6 ring-1 ring-ink-900/5">
+                  <h3 className="text-lg font-bold text-ink-900">{it.title}</h3>
                   <p className="mt-1 leading-relaxed text-ink-600">{it.text}</p>
                 </div>
               ))}
