@@ -23,7 +23,7 @@ export default function Leadership() {
         </div>
 
         <p className="mx-auto mt-6 max-w-xl rounded-full bg-gold-50 px-5 py-2.5 text-center text-sm font-medium text-ink-600 ring-1 ring-gold-200">
-          Full leader profiles are coming soon — names and photos below are placeholders.
+          Full profiles are coming soon — photos and bios below are placeholders.
         </p>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -51,6 +51,9 @@ export default function Leadership() {
               </div>
               <span className="ministry-tag bg-ocean-50 text-ocean-700">{leader.focus}</span>
               <p className="leading-relaxed text-ink-600">{leader.bio}</p>
+              {leader.contact && (
+                <p className="text-sm font-medium text-ocean-700">{leader.contact}</p>
+              )}
             </Card>
           ))}
         </div>
@@ -78,7 +81,7 @@ export default function Leadership() {
         title="Could there be a place for you on the team?"
         description="Whether you can give an evening a week or an hour a month, your welcome makes a difference."
         primaryCta={{ label: 'Get involved', to: '/connection' }}
-        secondaryCta={{ label: 'Support the ministry', to: '/give' }}
+        secondaryCta={{ label: 'See upcoming events', to: '/gallery' }}
       />
     </>
   )

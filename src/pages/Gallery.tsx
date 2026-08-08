@@ -86,6 +86,16 @@ export default function Gallery() {
       <section className="bg-cream-100/70">
         <div className="container-ministry py-16 sm:py-20">
           <SectionHeader eyebrow="Save the date" title="Upcoming events" align="left" />
+
+          <ul className="mt-8 flex flex-col gap-2.5">
+            {gallery.eventNotes.map((note) => (
+              <li key={note} className="flex items-start gap-2.5 leading-relaxed text-ink-600">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ruby-500" aria-hidden="true" />
+                <span>{note}</span>
+              </li>
+            ))}
+          </ul>
+
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {gallery.upcoming.map((ev) => (
               <Card key={ev.title} hover className="flex flex-col gap-3 bg-white">

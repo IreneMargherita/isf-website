@@ -1,9 +1,17 @@
 # International Student Fellowship (ISF) — Website
 
 
-A warm, welcoming, Christ-centered static website for **International Student
-Fellowship (ISF)** at California State University, Long Beach. Built as a fast,
-fully static single-page app — no backend, no database, no CMS.
+The website for **International Student Fellowship (ISF)**, a recognized club
+at California State University, Long Beach. Built as a fast, fully static
+single-page app — no backend, no database, no CMS.
+
+> **Tone matters here.** ISF is a *pre-evangelism* club, so the site leads with
+> friendship and American culture, not faith language. The official mission
+> line — used verbatim on the site — is: *"We exist to help students build
+> friendships with Americans and fellow students, learn about American culture,
+> and explore following Jesus."* Avoid insider words a first-time international
+> student wouldn't use (ministry, gospel, Christ-centered, outreach, testimony).
+> The full tone guide lives at the top of `src/data/content.ts`.
 
 ---
 
@@ -105,10 +113,9 @@ in `src/index.css`.
 
 ## Connecting the forms (later)
 
-The **Connect** and **Prayer Request** pages include forms that are
-**visual placeholders only — they do not submit anywhere yet** (clearly noted in
-the UI). The working email buttons next to them reach the ministry directly in
-the meantime.
+The **Connect** page includes a form that is a **visual placeholder only — it
+does not submit anywhere yet** (clearly noted in the UI). The call/text,
+WhatsApp, and Instagram links next to it reach ISF directly in the meantime.
 
 To make a form live, the easiest option is **Formspree** (free tier):
 
@@ -129,15 +136,16 @@ Netlify), or any form service that accepts a POST.
 
 ## TODO checklist (replace placeholders)
 
-- [ ] Real contact email — `site.contactEmail` in `src/data/content.ts`
-- [ ] Social links — `site.social` (Instagram / Facebook URLs)
+- [ ] Direct Facebook group URL — `site.contacts.facebook.href` in
+      `src/data/content.ts` (currently a Facebook search for the group name)
 - [ ] Leadership names, roles, bios, and photos — `leadership.leaders`
 - [ ] Real testimonials (with permission) — `testimonials.stories`
 - [ ] Upcoming / past events — `gallery.upcoming` and `gallery.past`
 - [ ] Gallery photos — `public/gallery/` + `src/pages/Gallery.tsx`
 - [ ] Resource links (currently `#`) — `resources.sections`
-- [ ] Donation link — `give.giving.primaryCta.href` in `src/data/content.ts`
-- [ ] Connect the Connect + Prayer forms (see above)
+- [ ] Each semester's real schedule — `gallery.upcoming` (copy it from the
+      printed postcard)
+- [ ] Connect the Connect form (see above)
 - [ ] Swap in the official logo — `public/isf-logo.svg`
 
 ---
@@ -152,8 +160,8 @@ src/
     sections/ Hero, ImpactMap, WeeklyRhythm, CallToAction, TestimonialPreview
   data/
     content.ts   ← single source of truth for ALL copy
-  pages/      Home, About, Curriculum, Leadership, Testimonials,
-              Connection, PrayerRequest, Resources, Gallery, Give, NotFound
+  pages/      Home, About, Leadership, Testimonials,
+              Connection, Resources, Gallery, NotFound
   App.tsx     routes (all pages lazy-loaded / code-split)
   main.tsx    app entry (BrowserRouter)
   index.css   Tailwind layers + custom ministry utility classes
