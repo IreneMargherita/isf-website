@@ -110,7 +110,7 @@ export default function About() {
         title="Come and see for yourself"
         description="The best way to understand ISF is to eat dinner with us. Turn up, bring a friend, and see for yourself."
         primaryCta={{ label: 'See upcoming events', to: '/gallery' }}
-        secondaryCta={{ label: 'Meet the team', to: '/leadership' }}
+        secondaryCta={{ label: 'Get in touch', to: '/connection' }}
       />
     </>
   )

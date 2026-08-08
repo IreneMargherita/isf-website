@@ -138,7 +138,6 @@ Netlify), or any form service that accepts a POST.
 
 - [ ] Direct Facebook group URL — `site.contacts.facebook.href` in
       `src/data/content.ts` (currently a Facebook search for the group name)
-- [ ] Leadership names, roles, bios, and photos — `leadership.leaders`
 - [ ] Real testimonials (with permission) — `testimonials.stories`
 - [ ] Upcoming / past events — `gallery.upcoming` and `gallery.past`
 - [ ] Gallery photos — `public/gallery/` + `src/pages/Gallery.tsx`
@@ -160,8 +159,8 @@ src/
     sections/ Hero, ImpactMap, WeeklyRhythm, CallToAction, TestimonialPreview
   data/
     content.ts   ← single source of truth for ALL copy
-  pages/      Home, About, Leadership, Testimonials,
-              Connection, Resources, Gallery, NotFound
+  pages/      Home, About, Testimonials, Connection,
+              Resources, Gallery, NotFound
   App.tsx     routes (all pages lazy-loaded / code-split)
   main.tsx    app entry (BrowserRouter)
   index.css   Tailwind layers + custom ministry utility classes

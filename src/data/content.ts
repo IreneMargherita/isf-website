@@ -91,7 +91,6 @@ export const nav: NavItem[] = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Events', to: '/gallery' },
-  { label: 'Our Team', to: '/leadership' },
   { label: 'Stories', to: '/testimonials' },
   { label: 'Connect', to: '/connection' },
   { label: 'Resources', to: '/resources' },
@@ -293,98 +292,6 @@ export const about = {
     ],
     line: 'Everyone welcome. Always free. No pressure, ever.',
   },
-}
-
-/* --------------------------- LEADERSHIP -------------------------- */
-export const leadership = {
-  hero: {
-    eyebrow: 'Our team',
-    title: 'The people behind the welcome',
-    subtitle:
-      'ISF is run by a friendly mix of staff, volunteers, host families, and student leaders who love welcoming international students.',
-  },
-  intro: [
-    'Behind every shared meal and every ride to the beach is a group of real people who show up week after week. Here are a few of the faces you will meet.',
-  ],
-  // TODO: Replace placeholder names, roles, bios and add photos.
-  // To add a photo: place an image in /public/leaders/ and set `image: "leaders/your-file.jpg"`.
-  // (No leading slash needed — paths resolve through src/lib/asset.ts, which
-  // handles the GitHub Pages sub-path automatically.)
-  leaders: [
-    {
-      name: 'Arthur',
-      role: 'Club Leader',
-      focus: 'Dinners, rides & general questions',
-      contact: 'Call or text 562-606-6160',
-      bio: 'Short bio placeholder — a sentence or two about Arthur, how long he has been part of ISF, and what he loves about it.',
-      initials: 'A',
-      image: '',
-    },
-    {
-      name: 'Bob',
-      role: 'Club Leader',
-      focus: 'Events & connecting new students',
-      contact: 'Call or text 562-212-9522',
-      bio: 'Short bio placeholder — a sentence or two about Bob and what he enjoys most about welcoming students.',
-      initials: 'B',
-      image: '',
-    },
-    {
-      name: 'Leader Name',
-      role: 'Events & Outings',
-      focus: 'Beach days, surf mornings & camping',
-      contact: '',
-      bio: 'Short bio placeholder — highlight this leader’s knack for planning fun, welcoming events for everyone.',
-      initials: 'LN',
-      image: '',
-    },
-    {
-      name: 'Leader Name',
-      role: 'Host Family Coordinator',
-      focus: 'Home dinners',
-      contact: '',
-      bio: 'Short bio placeholder — explain how this leader connects students with warm, welcoming host families.',
-      initials: 'LN',
-      image: '',
-    },
-    {
-      name: 'Leader Name',
-      role: 'Volunteer Coordinator',
-      focus: 'Rides & helping hands',
-      contact: '',
-      bio: 'Short bio placeholder — share how this leader helps volunteers get involved and serve students well.',
-      initials: 'LN',
-      image: '',
-    },
-    {
-      name: 'Leader Name',
-      role: 'Student Leader',
-      focus: 'Welcoming new students',
-      contact: '',
-      bio: 'Short bio placeholder — introduce a student leader who helps welcome and connect fellow international students.',
-      initials: 'LN',
-      image: '',
-    },
-  ],
-  groups: [
-    {
-      title: 'Volunteers',
-      text: 'Everyday friends who cook meals, give rides, share hobbies, and simply show up for students.',
-    },
-    {
-      title: 'Host families',
-      text: 'Families who open their homes for dinners and holidays, so students get the real thing instead of an empty dorm.',
-    },
-    {
-      title: 'Student leaders',
-      text: 'International and local students who help welcome newcomers and build the group from the inside.',
-    },
-    {
-      title: 'Local supporters',
-      text: 'Friends and families nearby who help cover meals, gas, and event costs so everything stays free for students.',
-    },
-  ],
-  note: 'Want to join the team? We would love to have you — reach out on our Connect page.',
 }
 
 /* -------------------------- TESTIMONIALS ------------------------- */
@@ -720,7 +627,6 @@ export const content = {
   impactMap,
   home,
   about,
-  leadership,
   testimonials,
   connection,
   resources,

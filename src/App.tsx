@@ -6,7 +6,6 @@ import Layout from './components/layout/Layout'
 // in Layout so the header/footer stay put while a page chunk loads.
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
-const Leadership = lazy(() => import('./pages/Leadership'))
 const Testimonials = lazy(() => import('./pages/Testimonials'))
 const Connection = lazy(() => import('./pages/Connection'))
 const Resources = lazy(() => import('./pages/Resources'))
@@ -19,7 +18,6 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/leadership" element={<Leadership />} />
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/connection" element={<Connection />} />
         <Route path="/resources" element={<Resources />} />
