@@ -346,13 +346,18 @@ export const about = {
     ],
   },
   /* The pull quote beside "Why we cook so much". It carries the idea of
-     Revelation 3:20 (someone knocks, you choose to open, then you eat
-     together) WITHOUT quoting or citing it. A student who knows the verse
-     will hear it. A student who doesn't just reads a warm invitation. That
-     is the whole tone of this site in one sentence: honest about where it
-     comes from, never preachy about it. */
+     Revelation 3:20 (an open door, a shared meal, both ways) WITHOUT
+     quoting or citing it. A student who knows the verse will hear it. A
+     student who doesn't just reads a warm invitation. That is the whole
+     tone of this site in one sentence: honest about where it comes from,
+     never preachy about it.
+
+     Note the direction: WE open the door, they don't have to knock. ISF
+     hosts, so the sentence should match what actually happens. An earlier
+     version had us knocking on the student's door, which is a different
+     and slightly pushier picture. */
   pullQuote: {
-    text: "We knock. If you open the door, we'll come in and eat together.",
+    text: 'Our door is open and the table is set. Dine with us, and we with you.',
     attribution: 'The heart of ISF',
   },
   hospitality: {
