@@ -82,7 +82,7 @@ export const site = {
     },
     phones: [
       { name: 'Arthur', display: '562-606-6160', tel: 'tel:+15626066160', sms: 'sms:+15626066160' },
-      { name: 'Bob', display: '562-212-9522', tel: 'tel:+15622129522', sms: 'sms:+15622129522' },
+      { name: 'Savannah', display: '562-526-2056', tel: 'tel:+15625262056', sms: 'sms:+15625262056' },
     ],
   },
 
@@ -237,7 +237,7 @@ export const home = {
       },
       {
         title: 'Where this comes from',
-        text: "Christ loved us, and we want to share that love with international students. If you have questions about faith, we'd love to have that conversation.",
+        text: "Jesus taught us to love our neighbors as ourselves, so that's the love we share with international students. If you have questions about faith, we'd love to have that conversation.",
       },
     ],
   },
@@ -245,7 +245,7 @@ export const home = {
     eyebrow: 'What we actually do',
     title: 'What a normal week looks like',
     description:
-      "There's an easy way to hang out every week. A home-cooked meal, a game night, a morning at the beach. Vegetarian options are always there, and if you need a ride we'll come get you.",
+      "There's an easy way to hang out every week. A home-cooked meal with vegetarian options always there, conversations, games, and outings to local sightseeing spots. We offer car rides from CSULB and from Beverly Plaza.",
     items: [
       {
         title: 'Home dinners',
@@ -273,7 +273,7 @@ export const home = {
     eyebrow: 'Our heart',
     title: 'Friendship first, always',
     body:
-      "We're a group of friends who've been changed by the love of Christ, and we get to share it with the world without leaving Long Beach. That looks like dinners, beach days and long conversations. It looks like learning how to pronounce your name properly and asking about the food you grew up on. Everything good about this club started with the welcome we were given, and passing it on is the whole point.",
+      "We're a group of friends who've been changed by the love of Christ, and we get to share it with the world without leaving Long Beach. That looks like dinners, conversations and fun activities. It looks like learning how to pronounce your name properly and asking about the food you grew up on. Everything good about this club started with the welcome we were given, and passing it on is the whole point.",
     cta: { label: 'See what we get up to', to: '/gallery' },
   },
   studentInvite: {
@@ -320,7 +320,7 @@ export const about = {
     title: 'How we do things',
     body: [
       "Friendship comes first. We show up, we cook, we drive, we listen, because that's what friends do and because it's the part we enjoy most.",
-      "We're Christians, and that's not incidental. The love of Christ is why this club exists and why the table keeps getting longer. Some students want to talk about that and read the Bible with us, and those are some of our favorite evenings. Whatever brings you here, you're welcome at our table.",
+      "We're followers of Jesus, and we have been blessed by Him and want to share His love with others. The love of Christ is why this club exists and why the table keeps getting longer. Some students want to talk about that and read the Bible with us, and those are some of our favorite evenings. Whatever brings you here, you're welcome at our table.",
     ],
     /* Titles read as a single sentence across the four cards:
        "We show up, we help out, we trade cultures, we share what we love."
@@ -348,8 +348,9 @@ export const about = {
   hospitality: {
     title: 'Why we cook so much',
     body: [
-      "A meal buys you a couple of hours with somebody. That's really all it is. Around our tables students aren't guests to impress, they're friends to enjoy.",
+      "A meal buys you a couple of hours with somebody. That's really all it is. Around our tables students aren't guests to impress, they're friends to enjoy. We treat them like relatives visiting from far-away countries.",
       'A shared dinner, a long conversation, a holiday you would otherwise have spent alone in a dorm room. Those are the things people remember years later. You were expected. Somebody saved you a seat.',
+      'Open the door, and we will dine with you, and you with us.',
     ],
   },
   csulb: {
@@ -387,7 +388,7 @@ export const connection = {
       text: 'The quickest way to reach a real person. Ask about an event, or tell us you need a ride.',
       items: [
         { label: 'Arthur', value: '562-606-6160', href: 'sms:+15626066160' },
-        { label: 'Bob', value: '562-212-9522', href: 'sms:+15622129522' },
+        { label: 'Savannah', value: '562-526-2056', href: 'sms:+15625262056' },
         { label: 'Email', value: 'isfbeach@gmail.com', href: 'mailto:isfbeach@gmail.com' },
       ],
       icon: 'phone',

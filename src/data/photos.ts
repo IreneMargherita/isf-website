@@ -69,7 +69,7 @@ export const PHOTOS: Photo[] = [
   {
     slug: 'surf-morning',
     alt: 'A row of students on the beach holding brightly coloured body boards and surfboards.',
-    caption: 'Body board lessons at Seal Beach',
+    caption: 'Surf and body board lessons',
     ratio: 2.45,
     year: '2025',
   },
@@ -103,7 +103,7 @@ export const PHOTOS: Photo[] = [
   {
     slug: 'thanksgiving-2025',
     alt: 'A round table set for Thanksgiving dinner, surrounded by students serving themselves.',
-    caption: 'First Thanksgiving, for a lot of them',
+    caption: 'American Thanksgiving feast',
     ratio: 1.333,
     year: '2025',
   },
