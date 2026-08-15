@@ -98,10 +98,10 @@ export default function About() {
           <Card className="relative overflow-hidden bg-white p-8 lg:p-10">
             <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1.5 rule-rainbow" />
             <p className="font-display text-2xl font-bold leading-snug text-ink-800 sm:text-3xl">
-              &ldquo;A shared table is the shortest distance between strangers and friends.&rdquo;
+              &ldquo;{about.pullQuote.text}&rdquo;
             </p>
             <p className="mt-4 text-sm font-bold uppercase tracking-wider text-coral-600">
-              The heart of ISF
+              {about.pullQuote.attribution}
             </p>
           </Card>
         </div>
