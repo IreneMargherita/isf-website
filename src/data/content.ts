@@ -539,45 +539,44 @@ export const gallery = {
   /** Practical notes lifted straight from the postcard. */
   eventNotes: [
     'Vegetarian food options are available at every meal.',
-    'Need a ride? Text us. Pickup is from the International House Dorm steps in parking lot #1, or the Beverly Plaza Shuttle Stop parking lot, 30 minutes before the event.',
+    'Need a ride? Text us. Pickup is from the International House Dorm steps in parking lot G1, or the Beverly Plaza Shuttle Stop parking lot, 30 minutes before the event.',
     "Most events are free, including every dinner and hangout. Road trips, camping and surf lessons cost something, and we'll always tell you the amount before you sign up.",
   ],
-  // TODO: Update each semester with the real schedule (see the printed postcard).
+  /* Fall 2026, taken straight off the printed postcard (ISF_postcard_Fall_2026 WOW.pdf).
+     Replace this whole list each semester from the new postcard and change
+     nothing else. Keep the date strings written out in full: "Sat 9/5" is
+     ambiguous to a student who writes dates day-first, which is most of the
+     world and most of the people reading this page. */
   upcoming: [
     {
-      title: 'Saturday Pool Party',
-      date: 'Saturday, September 5, 2026 · 5 to 8pm',
-      location: "Marty's House, 4455 Stanbridge Road, Long Beach 90808",
-      text: 'Swim, eat and meet everyone at the first big hangout of the semester.',
+      title: 'Welcome Pool Party',
+      date: 'Saturday, September 5, 2026 · 5 to 9pm',
+      location: "Marty's House, 4455 Stanbridge, Long Beach 90808",
+      text: 'The first big hangout of the semester. Swim, eat, and meet everybody at once.',
       tag: 'Hangout',
     },
     {
-      title: 'Free Snacks & Games',
-      date: 'Wednesday, September 9, 2026 · 4 to 6pm',
-      location: 'Nugget Grill Courtyard, near the CSULB bookstore',
-      text: "Drop in between classes for free snacks and games. DM us and we'll come find you.",
-      tag: 'On campus',
-    },
-    {
-      title: 'Friday Talk Time Dinner',
+      title: 'Talk Time Dinner',
       date: 'Friday, September 11, 2026 · 6 to 9pm',
-      location: "Art & Jade's House, 3829 Gondar Avenue, Long Beach 90808",
-      text: 'A home-cooked dinner and easy conversation. Great for practicing English and asking anything about American life.',
-      tag: 'Dinner',
-    },
-    {
-      title: 'Friday Games Dinner',
-      date: 'Friday, September 18, 2026 · 6 to 9pm',
-      location: 'Volunteer home, Long Beach',
-      text: 'Dinner, then board games and a lot of laughing at each other.',
+      location: "Marty's House, 4455 Stanbridge, Long Beach 90808",
+      text: 'A home-cooked dinner and easy conversation. Good for practicing English and asking anything about American life.',
       tag: 'Dinner',
     },
     {
       title: 'Surf & Body Board Lessons',
-      date: 'Saturday, September 26, 2026 · 8 to 11am',
-      location: '95 1st Street, Seal Beach 90740, by the jetty near lifeguard tower #5',
+      date: 'Saturday, September 19, 2026 · 8 to 11am',
+      location: 'Seal Beach Jetty',
       text: 'Never surfed before? Perfect. Boards and instruction provided. ($5 per person)',
       tag: 'Outdoors',
+    },
+    {
+      // TODO: the postcard doesn't print a start time for this one. Ask Carol
+      // and add it here in the same format as the others.
+      title: 'Soularium Conversation Dinner',
+      date: 'Friday, September 25, 2026',
+      location: "Marty's House, 4455 Stanbridge, Long Beach 90808",
+      text: 'Dinner, then a set of photo cards. You pick the images that say something true about your life, and the conversation goes from there. People usually end up on the big questions.',
+      tag: 'Dinner',
     },
   ],
   cta: {
