@@ -610,20 +610,22 @@ export const gallery = {
  *
  *  ABOUT `hideAfter`
  *  -----------------
- *  Write it as a full ISO timestamp WITH the timezone offset on the end.
- *  `-07:00` is California in August (PDT). In winter California is -08:00
- *  (PST), so if you ever set a date between November and March, use -08:00
- *  or the event will hang around an hour longer than you meant.
+ *  Just write the local Long Beach wall clock: "YYYY-MM-DDTHH:MM", 24-hour.
+ *  9pm is 21:00. Do NOT put a timezone offset on the end.
  *
- *  A timestamp with no offset ("2026-08-28T21:00:00") means "9pm wherever
- *  the visitor happens to be", which would hide it at 9pm Tokyo time for a
- *  student who just arrived from Japan and hasn't changed their laptop
- *  clock yet. Always include the offset.
+ *  `timeZone` below does the rest. Because it's a zone NAME rather than a
+ *  fixed offset, the browser works out whether that date falls in daylight
+ *  saving or not and adjusts on its own. Summer, winter, the weekend the
+ *  clocks change: all handled, nothing for you to remember.
  */
 export const featuredEvent = {
   /** Set to '' to switch the whole feature off. */
   href: 'https://www.eventbrite.com/e/welcome-back-the-semester-starter-dinner-tickets-1998644206624?aff=oddtdtcreator',
-  hideAfter: '2026-08-28T21:00:00-07:00',
+
+  /** Long Beach local wall clock, 24-hour. 21:00 = 9pm. No offset here. */
+  hideAfter: '2026-08-28T21:00',
+  /** Every time on this site is Long Beach time. This is what makes that true. */
+  timeZone: 'America/Los_Angeles',
 
   tag: 'New',
   title: 'Welcome Back: The Semester Starter Dinner',
