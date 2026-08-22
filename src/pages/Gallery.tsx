@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import PageHero from '../components/ui/PageHero'
 import Card from '../components/ui/Card'
 import CallToAction from '../components/sections/CallToAction'
 import SectionHeader from '../components/ui/SectionHeader'
 import PhotoCollage from '../components/sections/PhotoCollage'
-import { gallery } from '../data/content'
+import { featuredEvent, gallery } from '../data/content'
+import { useFeaturedEvent } from '../lib/featuredEvent'
 import { accentAt, accentByName } from '../lib/accents'
 
 const toneGradient: Record<string, string> = {
@@ -50,6 +52,12 @@ function MetaRow({ icon, children }: { icon: 'date' | 'pin'; children: React.Rea
 }
 
 export default function Gallery() {
+  const live = useFeaturedEvent()
+  /* Which card's "not open yet" note is showing. One value rather than an
+     array of booleans, so opening one closes the last. Two cards explaining
+     the same thing at once is noise. */
+  const [noteFor, setNoteFor] = useState<string | null>(null)
+
   return (
     <>
       <PageHero
@@ -92,22 +100,82 @@ export default function Gallery() {
           </ul>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {gallery.upcoming.map((ev, i) => {
-              const accent = accentAt(i * 2)
-              return (
-              <Card key={ev.title} hover className="relative flex flex-col gap-3 overflow-hidden bg-white">
-                <span aria-hidden="true" className={`absolute inset-y-0 left-0 w-1.5 ${accent.solid}`} />
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-xl font-bold text-ink-900">{ev.title}</h3>
-                  <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${accent.chip}`}>
-                    {ev.tag}
+            {/* The one event with a live registration link. Full width, on top,
+                and a real <a> so middle-click and "open in new tab" behave the
+                way people expect. It vanishes on its own after hideAfter. */}
+            {live && (
+              <a
+                href={live.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex flex-col gap-3 overflow-hidden rounded-ministry bg-white p-7 shadow-ministry ring-2 ring-coral-300 transition-all duration-300 hover:-translate-y-1 hover:shadow-ministry-lg focus-visible:-translate-y-1 md:col-span-2"
+              >
+                <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1.5 rule-rainbow" />
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <h3 className="text-xl font-bold text-ink-900 sm:text-2xl">{live.title}</h3>
+                  <span className="flex shrink-0 items-center gap-2 rounded-full bg-coral-50 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-coral-800">
+                    <span className="relative flex h-2 w-2" aria-hidden="true">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-coral-500 opacity-75 motion-reduce:hidden" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-coral-600" />
+                    </span>
+                    {live.tag}
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-x-5 gap-y-1">
-                  <MetaRow icon="date">{ev.date}</MetaRow>
-                  <MetaRow icon="pin">{ev.location}</MetaRow>
+                  <MetaRow icon="date">{live.date}</MetaRow>
+                  <MetaRow icon="pin">{live.location}</MetaRow>
                 </div>
-                <p className="leading-relaxed text-ink-600">{ev.text}</p>
+                <p className="leading-relaxed text-ink-600">{live.text}</p>
+                <span className="mt-1 inline-flex w-fit items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-bold tracking-wide text-white shadow-ministry transition-colors duration-200 group-hover:bg-brand-700">
+                  {live.ctaLabel}
+                  {/* the arrow leaving the box is the convention for "this
+                      opens somewhere else", which the new tab makes true */}
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M14 4h6v6M20 4l-8.5 8.5M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />
+                  </svg>
+                </span>
+                <span className="sr-only">(opens Eventbrite in a new tab)</span>
+              </a>
+            )}
+
+            {gallery.upcoming.map((ev, i) => {
+              const accent = accentAt(i * 2)
+              const open = noteFor === ev.title
+              return (
+              <Card key={ev.title} hover className="relative flex flex-col gap-3 overflow-hidden bg-white p-0">
+                <span aria-hidden="true" className={`absolute inset-y-0 left-0 w-1.5 ${accent.solid}`} />
+                {/* A button rather than a link, because there is nowhere to go
+                    yet. Using an <a href="#"> for this would promise navigation
+                    and then not deliver it. */}
+                <button
+                  type="button"
+                  onClick={() => setNoteFor(open ? null : ev.title)}
+                  aria-expanded={open}
+                  className="flex w-full flex-col gap-3 rounded-ministry p-7 text-left"
+                >
+                  <span className="flex items-center justify-between gap-3">
+                    <span className="text-xl font-bold text-ink-900">{ev.title}</span>
+                    <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${accent.chip}`}>
+                      {ev.tag}
+                    </span>
+                  </span>
+                  <span className="flex flex-wrap gap-x-5 gap-y-1">
+                    <MetaRow icon="date">{ev.date}</MetaRow>
+                    <MetaRow icon="pin">{ev.location}</MetaRow>
+                  </span>
+                  <span className="leading-relaxed text-ink-600">{ev.text}</span>
+
+                  {/* aria-live so a screen reader announces the note appearing.
+                      Without it the message is invisible to anyone not looking
+                      at the screen, and the click seems to do nothing. */}
+                  <span aria-live="polite" className="block">
+                    {open && (
+                      <span className="mt-1 block rounded-2xl bg-sun-50 px-4 py-3 text-sm font-semibold leading-relaxed text-ink-700 ring-1 ring-sun-200">
+                        {featuredEvent.notOpenYet}
+                      </span>
+                    )}
+                  </span>
+                </button>
               </Card>
               )
             })}

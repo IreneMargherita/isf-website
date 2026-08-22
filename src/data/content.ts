@@ -593,6 +593,58 @@ export const gallery = {
   },
 }
 
+/* ------------------------ FEATURED EVENT ------------------------- */
+/*  The one event with an open registration link. Everything about it,
+ *  including WHEN IT DISAPPEARS, lives here.
+ *
+ *  HOW TO SWAP IN THE NEXT EVENT
+ *  -----------------------------
+ *   1. Change the fields below (title, date, location, text, href).
+ *   2. Set `hideAfter` to the moment it should vanish.
+ *   3. Deploy. Nothing else on the site needs touching.
+ *
+ *  HOW TO TURN IT OFF EARLY
+ *  ------------------------
+ *   Set `href` to an empty string. The banner and the card both disappear
+ *   and every event card falls back to "registration hasn't opened yet".
+ *
+ *  ABOUT `hideAfter`
+ *  -----------------
+ *  Write it as a full ISO timestamp WITH the timezone offset on the end.
+ *  `-07:00` is California in August (PDT). In winter California is -08:00
+ *  (PST), so if you ever set a date between November and March, use -08:00
+ *  or the event will hang around an hour longer than you meant.
+ *
+ *  A timestamp with no offset ("2026-08-28T21:00:00") means "9pm wherever
+ *  the visitor happens to be", which would hide it at 9pm Tokyo time for a
+ *  student who just arrived from Japan and hasn't changed their laptop
+ *  clock yet. Always include the offset.
+ */
+export const featuredEvent = {
+  /** Set to '' to switch the whole feature off. */
+  href: 'https://www.eventbrite.com/e/welcome-back-the-semester-starter-dinner-tickets-1998644206624?aff=oddtdtcreator',
+  hideAfter: '2026-08-28T21:00:00-07:00',
+
+  tag: 'New',
+  title: 'Welcome Back: The Semester Starter Dinner',
+  date: 'Friday, August 28, 2026 · 6 to 9pm',
+  location: "Marty's House, 4455 Stanbridge Avenue, Long Beach 90808",
+  text: 'An evening of great food and even better company. Catch up with old friends, meet new faces, and start the semester off right. Dinner is provided and there are vegetarian options. Rides from IHouse at CSULB and the Beverly parking lot. Come hungry.',
+  ctaLabel: 'Register on Eventbrite',
+
+  /** The home page banner. */
+  banner: {
+    eyebrow: 'New event',
+    title: 'Welcome Back: The Semester Starter Dinner',
+    detail: 'Friday, August 28 · 6 to 9pm · Free dinner, rides available',
+    cta: 'Save your spot',
+  },
+
+  /** Shown when somebody clicks any event that has no link yet. */
+  notOpenYet:
+    "Registration hasn't opened for this one yet. Text us and we'll let you know the moment it does.",
+}
+
 /* ----------------------------- FOOTER ---------------------------- */
 export const footer = {
   mission:
