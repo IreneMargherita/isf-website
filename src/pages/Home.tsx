@@ -1,5 +1,4 @@
 import Hero from '../components/sections/Hero'
-import EventAlert from '../components/sections/EventAlert'
 import WeeklyRhythm from '../components/sections/WeeklyRhythm'
 import PhotoStrip from '../components/sections/PhotoStrip'
 import CallToAction from '../components/sections/CallToAction'
@@ -15,8 +14,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-
-      <EventAlert />
 
       <section className="container-ministry py-16 sm:py-20">
         <div className="grid items-center gap-10 lg:grid-cols-2">

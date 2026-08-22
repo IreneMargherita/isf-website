@@ -5,6 +5,7 @@ import Footer from './Footer'
 import ScrollToTop from './ScrollToTop'
 import PageBackdrop from './PageBackdrop'
 import QuestionnaireLauncher from '../ui/QuestionnaireLauncher'
+import EventAlert from '../sections/EventAlert'
 
 function PageLoader() {
   return (
@@ -26,6 +27,8 @@ export default function Layout() {
       </a>
       <ScrollToTop />
       <PageBackdrop />
+      {/* Above the header on purpose: first thing on the page, on every route. */}
+      <EventAlert />
       <Header />
       <main id="main" className="relative z-10 flex-1">
         <Suspense fallback={<PageLoader />}>

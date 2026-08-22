@@ -1,13 +1,30 @@
 import { useFeaturedEvent } from '../../lib/featuredEvent'
 
 /* ---------------------------------------------------------------------
- *  EventAlert — the home page banner for the one event you can actually
- *  register for right now.
+ *  EventAlert — the announcement bar at the very top of every page.
  *
- *  It renders NOTHING once the event is past. Not a greyed-out card, not
+ *  WHY THE TOP OF THE PAGE AND NOT INSIDE THE HERO
+ *  -----------------------------------------------
+ *  It sits ABOVE the header, so it is the first thing on the page and
+ *  physically cannot be scrolled past without being seen. Anything placed
+ *  below the hero competes with the headline for the same glance, and the
+ *  headline wins, because that is what a hero is designed to do.
+ *
+ *  It also lives in the Layout rather than on the Home page, so it shows
+ *  on every route. A student who lands on /gallery from an Instagram link
+ *  never sees the home page at all, and they are exactly the person most
+ *  likely to want a ticket.
+ *
+ *  It renders NOTHING once the event is past. Not a greyed-out bar, not
  *  "this event has ended". An empty space says nothing; a stale banner
- *  says nobody is looking after this website, which is exactly the
- *  opposite of what a student deciding whether to trust you should think.
+ *  says nobody is looking after this website.
+ *
+ *  ON THE COLOURS
+ *  --------------
+ *  The gradient uses the 700 shades, not the brighter 600s. White text on
+ *  coral-600 measures 4.43:1, just under the 4.5:1 that WCAG AA asks for.
+ *  coral-700 is 6.15:1. The difference is invisible to most people and
+ *  decisive for someone reading on a phone in Long Beach sunshine.
  * ------------------------------------------------------------------- */
 
 export default function EventAlert() {
@@ -15,47 +32,47 @@ export default function EventAlert() {
   if (!event) return null
 
   return (
-    <section className="container-ministry -mt-2 pb-2 pt-10 sm:pt-12">
+    <aside className="relative z-30 bg-gradient-to-r from-coral-700 via-berry-700 to-grape-700 text-white">
       <a
         href={event.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative block overflow-hidden rounded-blob bg-gradient-to-r from-coral-500 via-berry-500 to-grape-600 p-[3px] shadow-ministry-lg transition-transform duration-300 hover:-translate-y-1 focus-visible:-translate-y-1"
+        className="group container-ministry flex flex-wrap items-center justify-center gap-x-4 gap-y-2 py-2.5 text-center focus-visible:outline-none sm:py-3"
       >
-        <div className="relative flex flex-col gap-4 rounded-[calc(theme(borderRadius.blob)-3px)] bg-white px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-9 sm:py-7">
-          <div className="flex flex-col gap-2">
-            <span className="flex items-center gap-2">
-              <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
-                {/* the ping is decorative only, and motion-reduced users get
-                    a plain dot instead of a pulsing one */}
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-coral-500 opacity-75 motion-reduce:hidden" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-coral-600" />
-              </span>
-              <span className="text-xs font-extrabold uppercase tracking-[0.14em] text-coral-700">
-                {event.banner.eyebrow}
-              </span>
-            </span>
-
-            <h2 className="font-display text-xl font-black leading-tight text-ink-900 sm:text-2xl">
-              {event.banner.title}
-            </h2>
-            <p className="text-sm font-semibold text-ink-600 sm:text-base">{event.banner.detail}</p>
-          </div>
-
-          {/* Not a real <button>: this whole banner is already one link, and
-              a button inside a link is invalid HTML that screen readers and
-              keyboards both handle badly. It only needs to LOOK clickable. */}
-          <span
-            aria-hidden="true"
-            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-bold tracking-wide text-white shadow-ministry transition-colors duration-200 group-hover:bg-brand-700"
-          >
-            {event.banner.cta}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
+        <span className="flex items-center gap-2">
+          <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-70 motion-reduce:hidden" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" />
           </span>
-        </div>
+          <span className="text-[0.7rem] font-extrabold uppercase tracking-[0.16em]">
+            {event.banner.eyebrow}
+          </span>
+        </span>
+
+        <span className="text-sm font-bold sm:text-base">{event.banner.title}</span>
+
+        {/* The date is the first thing to go when space runs out on a phone.
+            The title and the button are what earn the tap; the exact date is
+            on the Eventbrite page they're one tap away from. */}
+        <span className="hidden text-sm font-medium text-white/85 lg:inline">
+          {event.banner.detail}
+        </span>
+
+        {/* Looks like a button, is not one. This whole bar is already a single
+            link, and a <button> nested inside an <a> is invalid HTML that
+            keyboards and screen readers both handle badly. */}
+        <span
+          aria-hidden="true"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-sm font-bold text-ink-900 shadow-sm transition-transform duration-200 group-hover:scale-105 group-focus-visible:scale-105"
+        >
+          {event.banner.cta}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </span>
+
+        <span className="sr-only">(opens Eventbrite in a new tab)</span>
       </a>
-    </section>
+    </aside>
   )
 }
